@@ -1,0 +1,780 @@
+/*==================================================
+00 | هوية الموقع والألوان
+==================================================*/
+:root {
+
+  /* الخلفية */
+  --bg-color: #0D0D0D;
+
+  /* البطاقات */
+  --card-color: #1A1A1A;
+
+  /* النص */
+  --text-color: #FFFFFF;
+
+  /* اللون الأساسي */
+  --primary-color: #C1121F;
+
+  /* Hover */
+  --hover-color: #A80F1A;
+
+  /* الحدود */
+  --border-color: #2A2A2A;
+
+  /* الظلال */
+  --shadow-color: rgba(193, 18, 31, .25);
+
+  /* الحواف */
+  --radius: 12px;
+
+  /* سرعة الانتقال */
+  --transition: all 0.4s ease;
+
+  /* زر أسود */
+  --black: #000000;
+
+  /* زر أبيض */
+  --white: #FFFFFF;
+
+  /* لون نجاح */
+  --success-color: #22c55e;
+
+  /* لون خطأ */
+  --danger-color: #dc2626;
+
+  /* لون ثانوي */
+  --secondary-color: #6B7280;
+
+  /* ظل عام */
+  --box-shadow: 0 10px 25px rgba(0, 0, 0, .25);
+
+}
+
+/* Light Mode */
+body.light {
+
+  --bg-color: #F5F5F5;
+
+  --card-color: #FFFFFF;
+
+  --text-color: #111111;
+
+  --primary-color: #C1121F;
+
+  --hover-color: #8E0E18;
+
+  --border-color: #D9D9D9;
+
+  --shadow-color: rgba(193, 18, 31, .20);
+
+}
+
+/*==================================================
+01 | الإعدادات العامة
+==================================================*/
+
+/* Reset جميع العناصر */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+/* إعدادات الصفحة الأساسية */
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+/*==================================================
+02 | ايققون تغير اللون
+==================================================*/
+/* تنسيق زر التبديل الدائري بجانب البروفايل */
+.theme-btn {
+  position: fixed;
+  right: 95px; /* يضعه بجانب زر البروفايل تماماً */
+  top: 20px;
+  width: 50px; /* نفس حجم الأزرار العلوية */
+  height: 50px;
+  background-color: #141414; /* خلفية داكنة دائرية */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  transition: var(--transition);
+  box-shadow: var(--box-shadow);
+}
+
+.theme-btn img {
+  width: 26px; /* حجم الأيقونة داخل الدائرة */
+  height: 26px;
+  object-fit: contain;
+  /* تحويل الأيقونة السوداء إلى لون رمادي فاتح مائل للأبيض ليظهر في الوضع المظلم */
+  filter: invert(0.7); 
+  transition: var(--transition);
+}
+
+.theme-btn:hover {
+  transform: scale(1.05);
+  background-color: #1a1a1a;
+}
+
+/* عندما يتحول الموقع للوضع المضيء، نغير خلفية الزر ولون الأيقونة لتظل واضحة */
+body.light .theme-btn {
+  background-color: #f0f0f0;
+}
+
+body.light .theme-btn img {
+  filter: invert(0); /* تعود للونها الأسود الأصلي لتناسب الوضع المضيء */
+}
+/* 1. حل مشكلة وضوح أيقونة الثيم */
+.theme-btn img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  /* يحول الأيقونة السوداء إلى بيضاء ناصعة تماماً لتظهر بوضوح في الوضع المظلم */
+  filter: brightness(0) invert(1); 
+  transition: var(--transition);
+}
+
+/* عندما يتحول الموقع للوضع المضيء */
+body.light .theme-btn img {
+  /* يعيد الأيقونة إلى لونها الأسود الأصلي لتظهر فوق الخلفية الفاتحة */
+  filter: none; 
+}
+
+
+/* 2. حل مشكلة اختفاء صور السيارات في الوضع المضيء */
+body.light .card img {
+  /* يعكس ألوان الصور (من خطوط بيضاء إلى خطوط سوداء فخمة) */
+  filter: invert(1); 
+  transition: var(--transition);
+}
+
+/*==================================================
+03 | القائمة الجانبية
+==================================================*/
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: var(--card-color);
+  overflow-x: hidden;
+  transition: .4s;
+  padding-top: 60px;
+  z-index: 1000;
+}
+
+/* روابط القائمة الجانبية */
+.sidebar a {
+  display: block;
+  padding: 15px 30px;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.sidebar a:hover {
+  background: var(--primary-color);
+  color: black;
+}
+
+/*قفل القائمة الجانبيه*/
+.closebtn {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 35px;
+}
+
+/* زر فتح القائمة */
+.menu-btn {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  background:var(--primary-color);
+  color: black;
+  border: none;
+  padding: 12px 15px;
+  font-size: 22px;
+  cursor: pointer;
+  border-radius: 6px;
+  z-index: 1001;
+}
+
+/* زر الملف الشخصي */
+.profile-btn {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 55px;
+  height: 55px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+box-shadow:var(--box-shadow);
+  transition: var(--transition);
+}
+
+/* صورة زر الملف الشخصي */
+.profile-btn img {
+  width: 25px;
+  height: 25px;
+}
+
+/* حدود زر الملف الشخصي */
+.profile-btn:hover {
+  transform: scale(1.1);
+}
+
+/*==================================================
+04 | الصفحة الرئيسية Hero Section
+==================================================*/
+
+/*خلفية وهيكل الـ Hero*/
+.hero {
+  height: 100vh;
+  position: relative;
+  background: linear-gradient(
+    rgba(0, 0, 0, .7), rgba(0, 0, 0, .85)), 
+    url('images/background/2026-rolls-royce-phantom.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* شعار الشركة */
+.logo {
+  width: 450px;
+  max-width: 90%;
+  height: auto;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 20px var(--shadow-color));
+}
+
+/* نص اسم المتجر*/
+.hero h1 {
+  font-size: 4rem;
+  color: var(--primary-color);
+  text-shadow: 0 0 20px var(--shadow-color);
+}
+
+/* نص التعريف عن المتجر*/
+.hero p {
+  font-size: 1.2rem;
+  margin: 20px 0;
+  max-width: 700px;
+  line-height: 1.8;
+}
+
+/*==================================================
+05 | الأزرار
+==================================================*/
+
+/* 1. زر Explore Collection الرئيسي */
+.btn {
+  background: var(--primary-color);
+  color: black;
+  padding: 14px 30px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+/* 2. التنسيق الافتراضي لجميع أزرار الموقع */
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: var(--primary-color);
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transform:translateY(-3px);
+  transition:var(--transition);
+  box-shadow:0 8px 18px var(--shadow-color);
+}
+
+/* 3. زر الرجوع الخاص بصفحات الأقسام فرعية */
+.back-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background: var(--primary-color);
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: var(--transition);
+}
+
+.back-btn:hover {
+  background: var(--primary-color);
+  transform: scale(1.05);
+}
+
+/*==================================================
+06 | أقسام السيارات
+==================================================*/
+
+/*المسافات والعناوين الرئيسية*/
+.collections {
+  padding: 80px 8%;
+}
+
+.collections h2,
+.location h2,
+.contact h2 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 40px;
+}
+
+/*توزيع شبكة العرض (Grid)*/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+/*==================================================
+07 | بطاقات السيارات
+==================================================*/
+
+/*هيكل وتصميم البطاقة*/
+.card {
+  background: var(--card-color);
+  color:var(--text-color);
+  padding: 30px;
+  text-align: center;
+  transition: var(--transition);
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius);
+}
+
+/*تأثيرات الحركية والإضاءة للبطاقة*/
+.card:hover {
+transform:translateY(-8px);
+transition:var(--transition);
+box-shadow:0 12px 25px var(--shadow-color);
+}
+
+/*تنسيق وتأثيرات الصورة داخل البطاقة*/
+.card img {
+  width: 180px;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px;
+  opacity: .9;
+  transition: 0.4s;
+}
+
+.card:hover img {
+  transform: scale(1.08) translateY(-8px);
+  opacity: 1;
+}
+
+/* زر بطاقات الأقسام */
+.card button {
+  margin-top: 20px;
+  padding: 10px 25px;
+  background: var(--primary-color);
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/*==================================================
+08 | معرض السيارات
+==================================================*/
+
+/*توزيع شبكة المعرض*/
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/*تصميم عنصر المعرض والظلال*/
+.gallery-item {
+  background: var(--card-color);
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius);
+  padding: 15px;
+  text-align: center;
+  transform:scale(1.03);
+  transition: var(--transition);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: .4s;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.05) translateY(-8px);
+  box-shadow: var(--box-shadow);
+}
+
+/*==================================================
+09 | نافذة الحجز
+==================================================*/
+
+/*خلفية النافذة المنبثقة (Modal)*/
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/*صندوق البيانات الداخلي والقوائم*/
+.modal-box {
+  background: var(--card-color);
+  padding: 30px;
+  border: 1px solid var(--primary-color);
+  width: 350px;
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.modal-box select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background: var(--card-color);
+  color: var(--text-color);
+  border: 1px solid var(--primary-color);
+}
+
+.modal-box h3 {
+  color: var(--primary-color);
+  margin: 15px 0;
+}
+
+/*زر إغلاق النافذة*/
+.close {
+  background: var(--primary-color);
+  margin-top: 10px;
+}
+
+/*==================================================
+10 | النماذج
+==================================================*/
+
+/*حقول الإدخال ونصوص الكتابة*/
+form {
+  max-width: 700px;
+  margin: auto;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  background: var(--card-color);
+  border: 1px solid var(--primary-color);
+  color: var(--text-color);
+}
+
+textarea {
+  height: 150px;
+}
+
+/*زر إرسال النموذج*/
+form button {
+  width: 100%;
+  padding: 15px;
+  background: var(--primary-color);
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/*==================================================
+11 | صفحة تسجيل الدخول
+==================================================*/
+.login-box {
+  width: 400px;
+  max-width: 90%;
+  margin: 120px auto;
+  padding: 35px;
+  background: var(--card-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+}
+
+/* عنوان تسجيل الدخول */
+.login-box h2 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+/* النص التعريفي */
+.login-box p {
+  margin-bottom: 20px;
+}
+
+
+.login-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  background: var(--card-color);
+  border: 1px solid var(--primary-color);
+  color: var(--text-color);
+}
+
+/* زر تسجيل الدخول */
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary-color);
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* رسالة الخطأ */
+#msg {
+  margin-top: 15px;
+  color: red;
+  font-weight: bold;
+}
+
+/*==================================================
+12 | رؤوس الصفحات
+==================================================*/
+
+/* تنسيق الهيدر للقسم */
+.page-header {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+/* العناوين والخطوط التجميلية*/
+.page-title {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin: 20px 0 40px;
+  letter-spacing: 2px;
+}
+
+.title-line {
+  width: 250px;
+  height: 2px;
+  background: var(--primary-color);
+  border: none;
+  margin: 0 auto 25px;
+}
+
+.top-header {
+  padding-top: 20px;
+}
+
+/*==================================================
+13 | صفحة الموقع
+==================================================*/
+
+/*الخريطة والـ iframe*/
+.location {
+  padding: 80px 8%;
+  text-align: center;
+}
+
+.location p {
+  margin: 10px 0;
+}
+
+iframe {
+  width: 100%;
+  height: 450px;
+  border: none;
+  margin-top: 30px;
+  border-radius: var(--radius);
+}
+
+/*التحكم بأحجام الشعارات المختلفة*/
+.main-logo {
+  width: 320px;
+  max-width: 85%;
+  display: block;
+  margin: 20px auto;
+  filter: drop-shadow(0 0 20px var(--shadow-color));
+}
+
+.page-logo {
+  width: 220px;
+  max-width: 80%;
+  display: block;
+  margin: 0 auto 20px;
+  filter: drop-shadow(0 0 15px var(--shadow-color));
+}
+
+.logo-small {
+  width: 220px;
+  display: block;
+  margin: 40px auto 10px;
+  filter: drop-shadow(0 0 15px var(--shadow-color));
+}
+
+
+/*==================================================
+14 | صفحة عن الشركة (About Us)
+==================================================*/
+.about-section {
+  padding: 60px 8%;
+  text-align: center;
+  max-width: 900px;
+  margin: auto;
+}
+
+.about-section h2 {
+  color: var(--primary-color);
+  margin: 40px 0 20px;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.about-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+/* تنسيق قائمة الخدمات المتطورة */
+.services-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.services-list li {
+  font-size: 1.1rem;
+  padding: 10px 25px;
+  background: var(--card-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 400px;
+  transition: var(--transition);
+}
+
+.services-list li:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+/*==================================================
+15 | صفحة التواصل
+==================================================*/
+.contact {
+  padding: 80px 8%;
+}
+
+/*==================================================
+16 | زر الواتساب
+==================================================*/
+
+/*الزر العائم والتأثير الحركي*/
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: var(--text-color);
+  padding: 15px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: var(--transition);
+}
+
+.whatsapp:hover {
+  transform: scale(1.1);
+}
+
+/*==================================================
+17 | التذييل (Footer)
+==================================================*/
+
+/*شريط أسفل الصفحة*/
+footer {
+  padding: 40px;
+  text-align: center;
+  background:var(--bg-color);
+  border-top:1px solid var(--primary-color);
+  color: #999;
+}
+
+/*==================================================
+18 | التجاوب مع الشاشات
+==================================================*/
+
+/*الشاشات المتوسطة - تابلت*/
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/*الشاشات الصغيرة - الهواتف الكبيرة*/
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.3rem;
+  }
+  .logo {
+    width: 280px;
+  }
+}
+
+/*الشاشات الصغيرة جداً - الهواتف*/
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}

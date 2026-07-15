@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ==========================================
+    01 | معلومات الصفحة الأساسية والربط
+    ========================================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUV Collection | Elegant Cars Rental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ==========================================
+    02 | أزرار التحكم العلوية والقائمة الجانبية
+    ========================================== -->
+    <button class="menu-btn" onclick="openNav()">☰</button>
+
+    <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Home</a>
+        <a href="suvs.html">SUV Collection</a>
+        <a href="sedans.html">Luxury Sedans</a>
+        <a href="minivans.html">Minivans</a>
+        <a href="exceptional.html">Exceptional Cars</a>
+        <a href="convertibles.html">Convertibles</a>
+        <a href="citycars.html">City Cars</a>
+    </div>
+
+    <!-- ==========================================
+    03 | رأس الصفحة (Header)
+    ========================================== -->
+    <header class="page-header">
+        <img src="images/logo.png" alt="Elegant Cars Rental" class="page-logo">
+        <h1 class="page-title">SUV Collection</h1>
+        <hr class="title-line">
+        <a href="index.html#collections" class="back-btn">← Back To Home</a>
+    </header>
+
+    <!-- ==========================================
+    04 | معرض السيارات الدفع الرباعي الفخمة - 6 سيارات من الحساب
+    ========================================== -->
+    <section class="gallery">
+        
+        <!-- السيارة 1: Lamborghini Urus -->
+        <div class="gallery-item">
+            <img src="images/suvs/Lamborghini Urus/f1.jpg" alt="Lamborghini Urus">
+            <h3>Lamborghini Urus</h3>
+            <button onclick="bookCar('Lamborghini Urus')">Book Now</button>
+        </div>
+
+        <!-- السيارة 2: Range Rover Vogue -->
+        <div class="gallery-item">
+            <img src="images/suvs/Range Rover Vogue/f1.jpg" alt="Range Rover Vogue">
+            <h3>Range Rover Vogue</h3>
+            <button onclick="bookCar('Range Rover Vogue')">Book Now</button>
+        </div>
+
+        <!-- السيارة 3: Audi Q8 -->
+        <div class="gallery-item">
+            <img src="images/suvs/Audi Q8/f1.jpg" alt="Audi Q8">
+            <h3>Audi Q8</h3>
+            <button onclick="bookCar('Audi Q8')">Book Now</button>
+        </div>
+
+        <!-- السيارة 4: Bentley Bentayga V8 -->
+        <div class="gallery-item">
+            <img src="images/suvs/Bentley Bentayga V8/F1.jpg" alt="Bentley Bentayga V8">
+            <h3>Bentley Bentayga V8</h3>
+            <button onclick="bookCar('Bentley Bentayga V8')">Book Now</button>
+        </div>
+
+        <!-- السيارة 5: Range Rover Sport -->
+        <div class="gallery-item">
+            <img src="images/suvs/Range Rover Sport/f1.jpg" alt="Range Rover Sport">
+            <h3>Range Rover Sport</h3>
+            <button onclick="bookCar('Range Rover Sport')">Book Now</button>
+        </div>
+
+        <!-- السيارة 6: Lexus LX 600 VIP -->
+        <div class="gallery-item">
+            <img src="images/suvs/Lexus LX 600/f1.jpg" alt="Lexus LX 600 VIP">
+            <h3>Lexus LX 600 VIP</h3>
+            <button onclick="bookCar('Lexus LX 600 VIP')">Book Now</button>
+        </div>
+
+    </section>
+
+    <!-- ==========================================
+    05 | نافذة الحجز والتحكم بالثيم والفوتر
+    ========================================== -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-box">
+            <h2>Book Your SUV</h2>
+            <p id="selectedCar"></p>
+            <label>Rental Duration</label>
+            <select id="period" onchange="calculatePrice()">
+                <option value="hour">1 Hour</option>
+                <option value="day">1 Day</option>
+                <option value="week">1 Week</option>
+                <option value="month">1 Month</option>
+            </select>
+            <label>Pickup Location</label>
+            <select id="location" onchange="calculatePrice()">
+                <option value="office">Main Office</option>
+                <option value="airport">Bahrain Airport</option>
+                <option value="hotel">Hotel Delivery</option>
+            </select>
+            <h3>Total Price: <span id="price">0 BHD</span></h3>
+            <button onclick="sendBooking()" class="btn">Confirm Booking</button>
+            <button onclick="closeModal()" class="btn close">Close</button>
+        </div>
+    </div>
+
+    <a href="javascript:void(0)" id="theme-toggle" class="theme-btn">
+        <img src="images/icon/theme-icon.png" alt="Toggle Theme" id="theme-icon">
+    </a>
+
+    <footer>
+        <p>© 2026 Elegant Cars Rental - Bahrain</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

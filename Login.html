@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- معلومات الصفحة -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- عنوان الصفحة -->
+    <title>Login | Elegant Cars Rental</title>
+
+    <!-- ربط CSS -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- شعار الشركة -->
+
+    <img src="images/logo.png"
+         alt="Elegant Cars Rental"
+         class="logo-small">
+
+    <!-- صندوق تسجيل الدخول -->
+
+    <div class="login-box">
+
+        <h2>Member Login</h2>
+
+        <p>
+            Access Elegant Cars Rental Services
+        </p>
+
+        <!-- اسم المستخدم -->
+
+        <input type="text"
+               id="user"
+               placeholder="Username">
+
+        <!-- كلمة المرور -->
+
+        <input type="password"
+               id="pass"
+               placeholder="Password">
+
+        <!-- زر تسجيل الدخول -->
+
+        <button onclick="login()">
+
+            Login
+
+        </button>
+
+        <!-- رسالة الخطأ -->
+
+        <p id="msg"></p>
+
+        <br>
+
+        <!-- الرجوع للصفحة الرئيسية -->
+
+        <a href="index.html"
+           class="btn">
+
+            Back To Home
+
+        </a>
+
+    </div>
+
+    <!-- زر تبديل الوضع (Dark/Light) باستخدام الصورة -->
+
+     <a href="javascript:void(0)" id="theme-toggle" class="theme-btn">
+
+    <img src="images/icon/theme-icon.png" alt="Toggle Theme" id="theme-icon">
+
+</a>
+
+
+    <!-- ربط JavaScript -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

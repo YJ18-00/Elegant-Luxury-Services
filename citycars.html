@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ==========================================
+    01 | معلومات الصفحة الأساسية والربط
+    ========================================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Cars | Elegant Cars Rental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ==========================================
+    02 | أزرار التحكم العلوية والقائمة الجانبية
+    ========================================== -->
+    <button class="menu-btn" onclick="openNav()">☰</button>
+
+    <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Home</a>
+        <a href="suvs.html">SUV Collection</a>
+        <a href="sedans.html">Luxury Sedans</a>
+        <a href="minivans.html">Minivans</a>
+        <a href="exceptional.html">Exceptional Cars</a>
+        <a href="convertibles.html">Convertibles</a>
+        <a href="citycars.html">City Cars</a>
+    </div>
+
+    <!-- ==========================================
+    03 | رأس الصفحة (Header)
+    ========================================== -->
+    <header class="page-header">
+        <img src="images/logo.png" alt="Elegant Cars Rental" class="page-logo">
+        <h1 class="page-title">City Cars</h1>
+        <hr class="title-line">
+        <a href="index.html#collections" class="back-btn">← Back To Home</a>
+    </header>
+
+    <!-- ==========================================
+    04 | معرض السيارات الصغيرة والرياضية - 6 سيارات من الحساب
+    ========================================== -->
+    <section class="gallery">
+        
+        <!-- السيارة 1: BMW M2 CS -->
+        <div class="gallery-item">
+            <img src="images/citycars/BMW M2 CS/F1.png" alt="BMW M2 CS">
+            <h3>BMW M2 CS</h3>
+            <button onclick="bookCar('BMW M2 CS')">Book Now</button>
+        </div>
+
+        <!-- السيارة 2: Mercedes-AMG A45 S -->
+        <div class="gallery-item">
+            <img src="images/citycars/Mercedes-AMG A45 S/F1.png" alt="Mercedes-AMG A45 S">
+            <h3>Mercedes-AMG A45 S</h3>
+            <button onclick="bookCar('Mercedes-AMG A45 S')">Book Now</button>
+        </div>
+
+        <!-- السيارة 3: Volkswagen Golf R -->
+        <div class="gallery-item">
+            <img src="images/citycars/Volkswagen Golf R/F1.jpg" alt="Volkswagen Golf R">
+            <h3>Volkswagen Golf R</h3>
+            <button onclick="bookCar('Volkswagen Golf R')">Book Now</button>
+        </div>
+
+        <!-- السيارة 4: BMW M3 -->
+        <div class="gallery-item">
+            <img src="images/citycars/BMW M3/F1.jpg" alt="BMW M3">
+            <h3>BMW M3</h3>
+            <button onclick="bookCar('BMW M3')">Book Now</button>
+        </div>
+
+        <!-- السيارة 5: Audi RS 5 -->
+        <div class="gallery-item">
+            <img src="images/citycars/Audi RS 5/F1.jpg" alt="Audi RS 5">
+            <h3>Audi RS 5</h3>
+            <button onclick="bookCar('Audi RS 5')">Book Now</button>
+        </div>
+
+        <!-- السيارة 6: Genesis G70 -->
+        <div class="gallery-item">
+            <img src="images/citycars/Genesis G70/F1.jpg" alt="Genesis G70">
+            <h3>Genesis G70</h3>
+            <button onclick="bookCar('Genesis G70')">Book Now</button>
+        </div>
+
+    </section>
+
+    <!-- ==========================================
+    05 | نافذة الحجز والتحكم بالثيم والفوتر
+    ========================================== -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-box">
+            <h2>Book Your Ride</h2>
+            <p id="selectedCar"></p>
+            <label>Rental Duration</label>
+            <select id="period" onchange="calculatePrice()">
+                <option value="hour">1 Hour</option>
+                <option value="day">1 Day</option>
+                <option value="week">1 Week</option>
+                <option value="month">1 Month</option>
+            </select>
+            <label>Pickup Location</label>
+            <select id="location" onchange="calculatePrice()">
+                <option value="office">Main Office</option>
+                <option value="airport">Bahrain Airport</option>
+                <option value="hotel">Hotel Delivery</option>
+            </select>
+            <h3>Total Price: <span id="price">0 BHD</span></h3>
+            <button onclick="sendBooking()" class="btn">Confirm Booking</button>
+            <button onclick="closeModal()" class="btn close">Close</button>
+        </div>
+    </div>
+
+    <a href="javascript:void(0)" id="theme-toggle" class="theme-btn">
+        <img src="images/icon/theme-icon.png" alt="Toggle Theme" id="theme-icon">
+    </a>
+
+    <footer>
+        <p>© 2026 Elegant Cars Rental - Bahrain</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- معلومات الصفحة -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- اسم الموقع في المتصفح -->
+    <title>Elegant Cars Rental | Bahrain</title>
+
+    <!-- ربط ملف CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- خط الموقع -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- زر فتح القائمة الجانبية -->
+    <button class="menu-btn" onclick="openNav()">
+        ☰
+    </button>
+
+    <!-- القائمة الجانبية -->
+    <div id="sidebar" class="sidebar">
+
+        <a href="javascript:void(0)"
+            class="closebtn"
+            onclick="closeNav()">
+            &times;
+        </a>
+
+        <a href="#home">Home</a>
+
+        <a href="#collections">Collections</a>
+        
+        <a href="about.html">About Us</a>
+
+        <a href="#location">Visit Us</a>
+
+        <a href="#contact">Contact Us </a>
+        
+
+    </div>
+
+    <!-- الصفحة الرئيسية -->
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="logo-container">
+            <img src="images/logo.png"
+                 alt="Elegant Cars Rental Logo"
+                 class="logo">
+        </div>
+
+        <h1>Elegant Cars Rental</h1>
+
+        <p>
+            Luxury Car Rental Services For Tourists,
+            Business Executives And VIP Clients In Bahrain.
+        </p>
+
+        <a href="#collections" class="btn">
+            Explore Collection
+        </a>
+
+    </div>
+
+</section>
+
+    <!-- أقسام السيارات -->
+
+    <section id="collections" class="collections">
+
+        <h2>Vehicle Categories</h2>
+
+        <div class="grid">
+
+            <!-- SUVs -->
+
+            <div class="card">
+
+                 <img src="images/card cover/sketch-suv-white.png"
+                alt="SUVs">
+
+                <h3>SUVs</h3>
+
+                <button onclick="showCategory('SUVs')">
+
+                    View Cars
+
+                </button>
+
+            </div>
+
+            <!-- Luxury Sedans -->
+
+            <div class="card">
+                 
+                <img src="images/card cover/sketch-sedans-white.png"
+                alt="Luxury Sedans">
+
+                <h3>Luxury Sedans</h3>
+
+                <button onclick="showCategory('Luxury Sedans')">
+
+                    View Cars
+
+                </button>
+
+            </div>
+
+            <!-- Minivans -->
+
+            <div class="card">
+
+                 <img src="images/card cover/sketch-minivans-white.png"
+                alt="Minivans">
+
+                <h3>Minivans</h3>
+
+                <button onclick="showCategory('Minivans')">
+
+                    View Cars
+
+                </button>
+
+            </div>
+
+            <!-- Exceptional Cars -->
+
+            <div class="card">
+
+                <img src="images/card cover/sketch-sportscar-white.png"
+                alt="Exceptional">
+
+                <h3>Exceptional Cars</h3>
+
+                <button onclick="showCategory('Exceptional Cars')">
+
+                    View Cars
+
+                </button>
+
+            </div>
+
+            <!-- Convertibles -->
+
+            <div class="card">
+
+                 <img src="images/card cover/sketch-convertibles-2-white.png"
+                alt="Convertibles">
+
+                <h3>Convertibles</h3>
+
+                <button onclick="showCategory('Convertibles')">
+
+                    View Cars
+
+                </button>
+
+            </div>
+
+            <!-- City Cars -->
+
+            <div class="card">
+                
+                <img src="images/card cover/sketch-citycars-white.png" alt="City Cars">
+                
+                <h3>City Cars</h3>
+                
+                <button onclick="showCategory('City Cars')">
+                    
+                    View Cars
+                
+                </button>
+            
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- موقع الشركة -->
+
+    <section id="location" class="location">
+
+        <h2>Visit Us</h2>
+
+        <p>The Avenues Bahrain</p>
+
+        <p>Road 4660, Manama, Bahrain</p>
+
+        <p>Phone: +973 3221 1146</p>
+
+        <!-- خريطة جوجل -->
+
+        <iframe
+            src="https://maps.google.com/maps?q=The%20Avenues%20Bahrain&t=&z=16&ie=UTF8&iwloc=&output=embed">
+        </iframe>
+
+    </section>
+
+    <!-- صفحة التواصل -->
+
+    <section id="contact" class="contact">
+
+        <h2>Contact Us</h2>
+
+        <form id="contactForm">
+
+            <input type="text"
+                id="name"
+                placeholder="Full Name">
+
+            <input type="email"
+                id="email"
+                placeholder="Email Address">
+
+            <textarea
+                id="message"
+                placeholder="Message">
+            </textarea>
+
+            <button type="submit">
+
+                Send Message
+
+            </button>
+
+        </form>
+
+    </section>
+
+    <!-- زر واتساب -->
+
+    <a class="whatsapp"
+        href="https://wa.me/97332211146?text=Hello%20Elegant%20Cars%20Rental"
+        target="_blank">
+
+        WhatsApp
+
+    </a>
+
+    <!-- الفوتر -->
+
+    <footer>
+
+        <p>
+
+            © 2026 Elegant Cars Rental - Bahrain
+
+        </p>
+
+    </footer>
+
+    <!-- زر تبديل الوضع (Dark/Light) باستخدام الصورة -->
+
+     <a href="javascript:void(0)" id="theme-toggle" class="theme-btn">
+
+    <img src="images/icon/theme-icon.png" alt="Toggle Theme" id="theme-icon">
+
+</a>
+
+    <!-- تجيل الدخول -->
+
+    <a href="login.html" class="profile-btn">
+
+    <img src="images/icon/login icon.png" alt="login">
+
+    </a>
+    
+    </div>
+
+    <!-- ربط  -->
+
+    <script src="script.js"></script>
+
+</a>
+
+</body>
+
+</html>

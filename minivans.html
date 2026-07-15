@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ==========================================
+    01 | معلومات الصفحة الأساسية والربط
+    ========================================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minivans | Elegant Cars Rental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ==========================================
+    02 | أزرار التحكم العلوية والقائمة الجانبية
+    ========================================== -->
+    <button class="menu-btn" onclick="openNav()">☰</button>
+
+    <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Home</a>
+        <a href="suvs.html">SUV Collection</a>
+        <a href="sedans.html">Luxury Sedans</a>
+        <a href="minivans.html">Minivans</a>
+        <a href="exceptional.html">Exceptional Cars</a>
+        <a href="convertibles.html">Convertibles</a>
+        <a href="citycars.html">City Cars</a>
+    </div>
+
+    <!-- ==========================================
+    03 | رأس الصفحة (Header)
+    ========================================== -->
+    <header class="page-header">
+        <img src="images/logo.png" alt="Elegant Cars Rental" class="page-logo">
+        <h1 class="page-title">Minivans</h1>
+        <hr class="title-line">
+        <a href="index.html#collections" class="back-btn">← Back To Home</a>
+    </header>
+
+    <!-- ==========================================
+    04 | معرض سيارات الميني فان الفاخرة - 6 سيارات من الحساب
+    ========================================== -->
+    <section class="gallery">
+        
+        <!-- السيارة 1: Mercedes-Benz V-Class (Maybach Edition) -->
+        <div class="gallery-item">
+            <img src="images/minivans/Mercedes-Benz V-Class (Maybach Edition)/F1.jpg" alt="Mercedes VAN Maybach">
+            <h3>Mercedes V-Class Maybach</h3>
+            <button onclick="bookCar('Mercedes V-Class Maybach')">Book Now</button>
+        </div>
+
+        <!-- السيارة 2: Mercedes-Benz VLE  -->
+        <div class="gallery-item">
+            <img src="images/minivans/Mercedes-Benz VLE/f1.jpg" alt="Mercedes-Benz VLE">
+            <h3>Mercedes VLE</h3>
+            <button onclick="bookCar('Mercedes VLE')">Book Now</button>
+        </div>
+        
+        <!-- السيارة 3: Hyundai Staria Lounge -->
+        <div class="gallery-item">
+            <img src="images/minivans/Hyundai Staria Lounge/f1.jpg" alt="Hyundai Staria Lounge">
+            <h3>Hyundai Staria Lounge</h3>
+            <button onclick="bookCar('Hyundai Staria Lounge')">Book Now</button>
+        </div>
+
+    </section>
+
+    <!-- ==========================================
+    05 | نافذة الحجز والتحكم بالثيم والفوتر
+    ========================================== -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-box">
+            <h2>Book Your Ride</h2>
+            <p id="selectedCar"></p>
+            <label>Rental Duration</label>
+            <select id="period" onchange="calculatePrice()">
+                <option value="hour">1 Hour</option>
+                <option value="day">1 Day</option>
+                <option value="week">1 Week</option>
+                <option value="month">1 Month</option>
+            </select>
+            <label>Pickup Location</label>
+            <select id="location" onchange="calculatePrice()">
+                <option value="office">Main Office</option>
+                <option value="airport">Bahrain Airport</option>
+                <option value="hotel">Hotel Delivery</option>
+            </select>
+            <h3>Total Price: <span id="price">0 BHD</span></h3>
+            <button onclick="sendBooking()" class="btn">Confirm Booking</button>
+            <button onclick="closeModal()" class="btn close">Close</button>
+        </div>
+    </div>
+
+    <a href="javascript:void(0)" id="theme-toggle" class="theme-btn">
+        <img src="images/icon/theme-icon.png" alt="Toggle Theme" id="theme-icon">
+    </a>
+
+    <footer>
+        <p>© 2026 Elegant Cars Rental - Bahrain</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
