@@ -1,98 +1,126 @@
-/* فتح القائمة الجانبية */
+/*====================================================================
+  1. القائمة الجانبية (SIDEBAR)
+====================================================================*/
+
+// فتح القائمة الجانبية
 function openNav() {
   document.getElementById("sidebar").style.width = "250px";
   const btn = document.querySelector(".menu-btn");
-  btn.style.opacity = "0";
-  btn.style.pointerEvents = "none";
+  if (btn) {
+    btn.style.opacity = "0";
+    btn.style.pointerEvents = "none";
+  }
 }
 
-/* إغلاق القائمة الجانبية */
+// إغلاق القائمة الجانبية
 function closeNav() {
   document.getElementById("sidebar").style.width = "0";
   const btn = document.querySelector(".menu-btn");
-  btn.style.opacity = "1";
-  btn.style.pointerEvents = "auto";
+  if (btn) {
+    btn.style.opacity = "1";
+    btn.style.pointerEvents = "auto";
+  }
 }
 
-/* الانتقال بين أقسام السيارات */
-function showCategory(category){
 
-  switch(category){
+/*====================================================================
+  2. التنقل وتصنيفات السيارات (NAVIGATION & CATEGORIES)
+====================================================================*/
 
+// الانتقال بين أقسام السيارات
+function showCategory(category) {
+  switch(category) {
     case "Exceptional Cars":
       window.location.href = "exceptional.html";
       break;
-
     case "Luxury Sedans":
       window.location.href = "sedans.html";
       break;
-
     case "Convertibles":
       window.location.href = "convertibles.html";
       break;
-
     case "SUVs":
       window.location.href = "suvs.html";
       break;
-
     case "Minivans":
       window.location.href = "minivans.html";
       break;
-
     case "City Cars":
       window.location.href = "citycars.html";
       break;
-
     default:
       alert("Page Not Found");
   }
 }
 
-/* فتح نافذة الحجز */
-function bookCar(car){
+
+/*====================================================================
+  3. نظام الحجز والأسعار (BOOKING SYSTEM)
+====================================================================*/
+
+let currentCar = ""; // تعريف المتغير لحفظ السيارة المحددة حالياً
+
+// فتح نافذة الحجز
+function bookCar(car) {
   currentCar = car;
-  document.getElementById("bookingModal").style.display = "flex";
-  document.getElementById("selectedCar").innerText = car;
+  const modal = document.getElementById("bookingModal");
+  const selectedCarText = document.getElementById("selectedCar");
+  
+  if (modal) modal.style.display = "flex";
+  if (selectedCarText) selectedCarText.innerText = car;
+  
   calculatePrice();
 }
 
-/* حساب سعر الإيجار حسب المدة ومكان الاستلام */
-function calculatePrice(){
-  let period = document.getElementById("period").value;
-  let location = document.getElementById("location").value;
+// حساب سعر الإيجار حسب المدة ومكان الاستلام
+function calculatePrice() {
+  const periodEl = document.getElementById("period");
+  const locationEl = document.getElementById("location");
+  const priceEl = document.getElementById("price");
+  
+  if (!periodEl || !locationEl) return 0;
+
+  let period = periodEl.value;
+  let location = locationEl.value;
   let price = 0;
 
+  // احتساب السعر الأساسي بناءً على المدة
   if(period === "hour") price = 50;
   if(period === "day") price = 150;
   if(period === "week") price = 900;
   if(period === "month") price = 3000;
   if(period === "year") price = 30000;
 
+  // رسوم إضافية حسب مكان الاستلام
   if(location === "airport") price += 20;
   if(location === "hotel") price += 15;
 
-  document.getElementById("price").innerText = price + " BHD";
+  if (priceEl) {
+    priceEl.innerText = price + " BHD";
+  }
   return price;
 }
 
-/* إرسال بيانات الحجز إلى واتساب */
-function sendBooking(){
-  let period = document.getElementById("period").value;
-  let location = document.getElementById("location").value;
+// إرسال بيانات الحجز إلى واتساب
+function sendBooking() {
+  const periodEl = document.getElementById("period");
+  const locationEl = document.getElementById("location");
+  
+  if (!periodEl || !locationEl) return;
+
+  let period = periodEl.value;
+  let location = locationEl.value;
   let price = calculatePrice();
 
-  let message =
+  let message = 
 `Elegant Cars Rental Booking
 
 Car: ${currentCar}
-
 Duration: ${period}
-
 Pickup Location: ${location}
-
 Price: ${price} BHD`;
 
-alert("Booking Successful");
+  alert("Booking Successful");
 
   window.open(
     "https://wa.me/97332211146?text=" + encodeURIComponent(message),
@@ -100,28 +128,33 @@ alert("Booking Successful");
   );
 }
 
-/* إغلاق نافذة الحجز */
-function closeModal(){
-  document.getElementById("bookingModal").style.display = "none";
+// إغلاق نافذة الحجز
+function closeModal() {
+  const modal = document.getElementById("bookingModal");
+  if (modal) modal.style.display = "none";
 }
 
-/* التحقق من نموذج التواصل */
-const form = document.getElementById("contactForm");
 
-if(form){
-  form.addEventListener("submit", function(e){
+/*====================================================================
+  4. التحقق من النماذج وتسجيل الدخول (FORMS & LOGIN)
+====================================================================*/
+
+// التحقق من نموذج التواصل
+const form = document.getElementById("contactForm");
+if (form) {
+  form.addEventListener("submit", function(e) {
     e.preventDefault();
 
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
     const message = document.getElementById("message").value.trim();
 
-    if(name === "" || email === "" || message === ""){
+    if(name === "" || email === "" || message === "") {
       alert("Please fill all fields");
       return;
     }
 
-    if(!email.includes("@")){
+    if(!email.includes("@")) {
       alert("Please Enter Valid Email");
       return;
     }
@@ -131,83 +164,92 @@ if(form){
   });
 }
 
-/* تسجيل الدخول */
+// تسجيل الدخول
+function login() {
+  const userEl = document.getElementById("user");
+  const passEl = document.getElementById("pass");
+  
+  if (!userEl || !passEl) return;
 
-function login(){
+  const username = userEl.value.trim();
+  const password = passEl.value.trim();
 
-    const username =
-        document.getElementById("user").value.trim();
+  if(username === "" || password === "") {
+    alert("Please Enter Username And Password");
+    return;
+  }
 
-    const password =
-        document.getElementById("pass").value.trim();
-
-    if(username === "" || password === ""){
-
-        alert("Please Enter Username And Password");
-
-        return;
-
-    }
-
-    alert("Login Successful");
-
-    window.location.href = "index.html";
-
+  alert("Login Successful");
+  window.location.href = "index.html";
 }
 
-/*==============================
-Dark / Light Mode
-==============================*/
 
-const themeToggleBtn = document.getElementById('theme-toggle');
-const body = document.body;
+/*====================================================================
+  5. مظهر الموقع والوضع الليلي (THEME: DARK / LIGHT MODE)
+====================================================================*/
 
-// التحقق من الوضع المحفوظ مسبقاً عند تحميل الصفحة
-if (localStorage.getItem('theme') === 'light') {
-    body.classList.add('light');
-} else {
-    body.classList.remove('light');
-}
-
-// تبديل الوضع عند الضغط على الزر
-themeToggleBtn.addEventListener('click', () => {
-    body.classList.toggle('light');
-    
-    if (body.classList.contains('light')) {
-        localStorage.setItem('theme', 'light');
+// دالة لتحديث أيقونة الوضع (شمس أو قمر)
+function updateThemeIcon(theme) {
+  const icon = document.getElementById("themeIcon");
+  if (icon) {
+    if (theme === "light") {
+      icon.src = "images/icon/theme-icon.png"; // أيقونة الشمس للوضع الفاتح
     } else {
-        localStorage.setItem('theme', 'dark');
+      icon.src = "images/icon/theme-icon.png";
     }
+  }
+}
+
+// عند تشغيل الصفحة: ضبط وتطبيق المظهر المحفوظ
+window.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("theme") || "dark"; // الافتراضي هو المظلم
+  
+  if (savedTheme === "light") {
+    document.body.classList.add("light");
+  } else {
+    document.body.classList.remove("light");
+  }
+  
+  updateThemeIcon(savedTheme);
 });
 
-/*==============================
-Load Saved Theme
-==============================*/
-
-window.onload=function(){
-
-const savedTheme=localStorage.getItem("theme");
-
-const icon=document.getElementById("themeIcon");
-
-if(savedTheme==="light"){
-
-document.body.classList.add("light");
-
-if(icon){
-
-icon.src="images/theme/sun.png";
-
+// تبديل الوضع عند الضغط على الزر
+const themeToggleBtn = document.getElementById('theme-toggle');
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light');
+    
+    let currentTheme = "dark";
+    if (document.body.classList.contains('light')) {
+      currentTheme = "light";
+    }
+    
+    localStorage.setItem('theme', currentTheme);
+    updateThemeIcon(currentTheme);
+  });
 }
 
-}else{
+/*====================================================================
+  6. BACKGROUND HERO SLIDER (5 SECONDS TRANSITION)
+====================================================================*/
+window.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelectorAll(".hero-slide");
+  if (slides.length > 1) {
+    let currentSlideIndex = 0;
+    const intervalTime = 5000; // Time set to 5000ms (5 seconds)
 
-if(icon){
+    function nextSlide() {
+      // Remove active state from current slide
+      slides[currentSlideIndex].classList.remove("active");
+      
+      // Calculate next slide index (wrap-around using modulus)
+      currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+      
+      // Apply active class to fade the new slide in
+      slides[currentSlideIndex].classList.add("active");
+    }
 
-icon.src="images/theme/moon.png";
-
-}
-
-}
-
-}
+    // Initialize auto-rotation intervals
+    setInterval(nextSlide, intervalTime);
+  }
+});

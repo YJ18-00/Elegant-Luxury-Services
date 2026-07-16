@@ -310,7 +310,17 @@ button {
   box-shadow:0 8px 18px var(--shadow-color);
 }
 
-/* 3. زر الرجوع الخاص بصفحات الأقسام فرعية */
+/* 3. زر Learn More About Us الرئيسي */
+.btn-learn-more {
+  background: var(--primary-color);
+  color: black;
+  padding: 14px 30px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+/* 4. زر الرجوع الخاص بصفحات الأقسام فرعية */
 .back-btn {
   display: inline-block;
   padding: 12px 25px;
@@ -653,54 +663,346 @@ iframe {
 /*==================================================
 14 | صفحة عن الشركة (About Us)
 ==================================================*/
-.about-section {
-  padding: 60px 8%;
-  text-align: center;
-  max-width: 900px;
-  margin: auto;
-}
+/*==================================================
+About Page Redesign Core
+==================================================*/
 
-.about-section h2 {
-  color: var(--primary-color);
-  margin: 40px 0 20px;
-  font-size: 2rem;
-  text-transform: uppercase;
-}
-
-.about-section p {
+/* Brand Subtitle under Page Title */
+.brand-subtitle {
   font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 15px;
-  color: var(--text-color);
-  opacity: 0.9;
+  letter-spacing: 2px;
+  color: var(--secondary-color);
+  text-transform: uppercase;
+  margin-top: -30px;
+  margin-bottom: 25px;
 }
 
-/* تنسيق قائمة الخدمات المتطورة */
-.services-list {
-  list-style: none;
-  padding: 0;
+/*==================================================
+About Hero & Automatic Slider
+==================================================*/
+.about-hero {
+  position: relative;
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  margin-bottom: 60px;
+}
+
+.hero-slider-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out; /* Smooth fade effect */
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65); /* Black transparent layer overlay */
+  z-index: 2;
+}
+
+.about-hero .hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  margin-top: 15px;
+  gap: 20px;
 }
 
-.services-list li {
-  font-size: 1.1rem;
-  padding: 10px 25px;
+.about-hero .hero-content h1 {
+  font-size: 3.5rem;
+  color: var(--text-color);
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+}
+
+.about-hero .hero-content p {
+  font-size: 1.25rem;
+  color: #EAEAEA;
+  line-height: 1.7;
+  font-weight: 300;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+/*==================================================
+Centered Content Containers (Who We Are & Vision)
+==================================================*/
+.about-container-centered {
+  padding: 60px 8%;
+  background: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-content-box {
+  max-width: 900px;
+  text-align: center;
+  padding: 40px;
   background: var(--card-color);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
-  width: 100%;
-  max-width: 400px;
   transition: var(--transition);
 }
 
-.services-list li:hover {
+.about-content-box h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.about-content-box p {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: var(--text-color);
+  font-weight: 300;
+}
+
+/* Red glow accent on central boxes when hovered */
+.about-content-box:hover {
   border-color: var(--primary-color);
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px var(--shadow-color);
+  box-shadow: 0 8px 30px var(--shadow-color);
+}
+
+/*==================================================
+Services Grid Section (6 Premium Cards)
+==================================================*/
+.about-services-section {
+  padding: 80px 8%;
+  background: var(--bg-color);
+}
+
+.about-section-heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.about-section-heading h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 15px;
+}
+
+.about-section-heading p {
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+}
+
+.about-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-service-card {
+  background: var(--card-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 45px 30px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.about-card-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.about-service-card h3 {
+  font-size: 1.4rem;
+  color: var(--text-color);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.about-service-card p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--secondary-color);
+  font-weight: 300;
+}
+
+/* Modern Luxury Red Glow Hover Transitions */
+.about-service-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 25px var(--shadow-color);
+}
+
+.about-service-card:hover h3 {
+  color: var(--primary-color);
+}
+
+.about-service-card:hover p {
+  color: var(--text-color);
+}
+
+/*==================================================
+Why Choose Us (6 Feature Boxes)
+==================================================*/
+.why-choose-section {
+  padding: 80px 8%;
+  background: var(--bg-color);
+}
+
+.why-choose-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-box {
+  background: var(--card-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 35px 25px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.feature-icon {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+.feature-box h3 {
+  font-size: 1.3rem;
+  color: var(--text-color);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.feature-box p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--secondary-color);
+}
+
+/* Feature Hover Animation */
+.feature-box:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-color);
+  box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.feature-box:hover h3 {
+  color: var(--primary-color);
+}
+
+.feature-box:hover p {
+  color: var(--text-color);
+}
+
+/*==================================================
+Footer Meta Styles Adjustments
+==================================================*/
+.footer-platform {
+  font-size: 0.85rem;
+  margin-top: 8px;
+  letter-spacing: 1px;
+  color: var(--secondary-color);
+  text-transform: uppercase;
+}
+
+/*==================================================
+Responsive Queries for Redesigned Grid Elements
+==================================================*/
+@media (max-width: 1024px) {
+  .about-services-grid,
+  .why-choose-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  .about-hero .hero-content p {
+    font-size: 1.1rem;
+  }
+  .about-services-grid,
+  .why-choose-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .about-content-box {
+    padding: 25px 15px;
+  }
+}
+
+/*==================================================
+Theme Toggle Button Fixing (Floating Style)
+==================================================*/
+.theme-btn {
+  position: fixed; /* يجعله عائماً وثابتاً في زاوية الشاشة */
+  top: 25px;
+  right: 25px;
+  z-index: 9999; /* ليكون دائماً فوق كل العناصر */
+  background: var(--card-color);
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  border-radius: 50%; /* يجعله دائرياً بشكل فخم */
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.theme-btn:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 15px var(--shadow-color);
+  transform: scale(1.1);
+}
+
+.theme-btn img {
+  width: 22px;
+  height: 22px;
+  transition: var(--transition);
 }
 
 /*==================================================

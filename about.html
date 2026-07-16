@@ -2,37 +2,174 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About Us - ECR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Elegant Cars Rental</title>
+    <!-- Google Fonts for premium typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- Theme Switcher Button (Aligned with main site layout) -->
+<div class="theme-btn" id="theme-toggle" style="cursor: pointer;">
+    <img src="images/icon/theme-icon.png" id="themeIcon" alt="Theme Toggle">
+</div>
+
+<!--==================================================
+  1. Header / Brand Intro Section
+==================================================-->
 <header class="page-header top-header">
-    <img src="images/logo.png" class="page-logo">
-    <h1 class="page-title">About ECR</h1>
+    <img src="images/logo.png" class="page-logo" alt="Elegant Cars Rental Logo">
+    <h1 class="page-title">About Elegant Cars Rental</h1>
+    <p class="brand-subtitle">Luxury Mobility & Concierge Platform</p>
     <hr class="title-line">
+    <a href="index.html" class="back-btn">Back Home</a>
 </header>
 
-<section class="about-section">
-    <h2>Who We Are</h2>
-    <p>Elegant Cars Rental (ECR) is a luxury mobility and concierge platform based in Bahrain.</p>
-    <p>We provide premium transportation solutions for tourists, executives, and VIP clients.</p>
-
-    <h2>Our Mission</h2>
-    <p>To deliver exceptional luxury transportation experiences with comfort, safety, and elegance.</p>
-
-    <h2>Our Services</h2>
-    <ul class="services-list">
-        <li>Luxury Car Rental</li>
-        <li>Airport Pickup</li>
-        <li>Chauffeur Services</li>
-        <li>Hotel Delivery</li>
-        <li>Business Transportation</li>
-    </ul>
-
-    <br><br>
-    <a href="index.html" class="back-btn">Back Home</a>
+<!--==================================================
+  2. Hero Slider Section
+==================================================-->
+<section class="about-hero" id="hero-slider">
+    <div class="hero-overlay"></div>
+    <div class="hero-slider-container">
+        <!-- Slide 1 (Active by default) -->
+        <div class="hero-slide active" style="background-image: url('images/about/about1.jpg');"></div>
+        <!-- Slide 2 -->
+        <div class="hero-slide" style="background-image: url('images/about/about2.jpg');"></div>
+    </div>
+    <div class="hero-content">
+        <h1>Luxury Beyond Transportation</h1>
+        <p>Curating exceptional bespoke journeys by land, sea, and sky. Built on absolute trust, ultimate security, and timeless performance.</p>
+    </div>
 </section>
+
+<!--==================================================
+  3. Who We Are Section
+==================================================-->
+<section class="about-container-centered">
+    <div class="about-content-box">
+        <h2>Who We Are</h2>
+        <p>
+            Established as the premier choice in the Kingdom of Bahrain, Elegant Cars Rental (ECR) caters to high-profile executives, diplomats, and global travelers who demand the highest tier of luxury[cite: 2]. We do not simply arrange vehicles; we curate tailored premium experiences. Operating with a pristine fleet of supercars, fully-crewed motor yachts, and private charter aircraft, our mission is to redefine your standard of mobility through unmatched precision, luxury hospitality, and unwavering safety.
+        </p>
+    </div>
+</section>
+
+<!--==================================================
+  4. Our Premium Services Section
+==================================================-->
+<section class="about-services-section">
+    <div class="about-section-heading">
+        <h2>Our Premium Services</h2>
+        <p>A flawless selection designed to elevate your business operations and leisure trips.</p>
+    </div>
+    <div class="about-services-grid">
+        <!-- Card 1: Luxury Cars -->
+        <div class="about-service-card">
+            <div class="about-card-icon">🚗</div>
+            <h3>Luxury Cars</h3>
+            <p>Access our high-performance supercars and prestigious sedans from brands like Rolls-Royce, Bentley, and Porsche.</p>
+        </div>
+        <!-- Card 2: Private Jets -->
+        <div class="about-service-card">
+            <div class="about-card-icon">✈️</div>
+            <h3>Private Jets</h3>
+            <p>Take off on your schedule with luxury aircraft charters designed to preserve your privacy and save your valuable time.</p>
+        </div>
+        <!-- Card 3: Luxury Yachts -->
+        <div class="about-service-card">
+            <div class="about-card-icon">🛥️</div>
+            <h3>Luxury Yachts</h3>
+            <p>Set sail across the beautiful waters of the Arabian Gulf aboard our fully crewed, ultra-exclusive VIP superyachts.</p>
+        </div>
+        <!-- Card 4: VIP Chauffeur -->
+        <div class="about-service-card">
+            <div class="about-card-icon">🕴️</div>
+            <h3>VIP Chauffeur</h3>
+            <p>Travel comfortably with our discreet, highly skilled professional chauffeurs selected to match our VIP standards.</p>
+        </div>
+        <!-- Card 5: Airport Transfer -->
+        <div class="about-service-card">
+            <div class="about-card-icon">✈️</div>
+            <h3>Airport Transfer</h3>
+            <p>Enjoy prompt runway and terminal transfers with dedicated baggage handling and direct destination routing.</p>
+        </div>
+        <!-- Card 6: Concierge Services -->
+        <div class="about-service-card">
+            <div class="about-card-icon">🛎️</div>
+            <h3>Concierge Services</h3>
+            <p>Access customized requests, high-end hotel reservations, and five-star arrangements managed by our VIP desk.</p>
+        </div>
+    </div>
+</section>
+
+<!--==================================================
+  5. Why Choose ECR Section
+==================================================-->
+<section class="why-choose-section">
+    <div class="about-section-heading">
+        <h2>Why Choose ECR</h2>
+        <p>Our commitment to excellence ensures your journey remains secure, seamless, and uniquely luxurious.</p>
+    </div>
+    <div class="why-choose-grid">
+        <!-- Box 1: Premium Fleet -->
+        <div class="feature-box">
+            <div class="feature-icon">✨</div>
+            <h3>Premium Fleet</h3>
+            <p>A selection of high-end vehicles in showroom condition, maintained strictly to original manufacturer standards.</p>
+        </div>
+        <!-- Box 2: Luxury Experience -->
+        <div class="feature-box">
+            <div class="feature-icon">💎</div>
+            <h3>Luxury Experience</h3>
+            <p>From custom in-car amenities to bespoke premium setups, your comfort remains our highest priority.</p>
+        </div>
+        <!-- Box 3: Professional Drivers -->
+        <div class="feature-box">
+            <div class="feature-icon">👔</div>
+            <h3>Professional Drivers</h3>
+            <p>Chauffeurs trained in defensive driving protocols, local geography, and discreet corporate etiquette.</p>
+        </div>
+        <!-- Box 4: 24/7 Support -->
+        <div class="feature-box">
+            <div class="feature-icon">📞</div>
+            <h3>24/7 Support</h3>
+            <p>A direct, round-the-clock hotline to a dedicated executive agent ready to handle any real-time travel modifications.</p>
+        </div>
+        <!-- Box 5: Trusted Company -->
+        <div class="feature-box">
+            <div class="feature-icon">🛡️</div>
+            <h3>Trusted Company</h3>
+            <p>Highly trusted within Bahrain and GCC, known for flawless operations and serving diplomats and royalty.</p>
+        </div>
+        <!-- Box 6: VIP Services -->
+        <div class="feature-box">
+            <div class="feature-icon">🌟</div>
+            <h3>VIP Services</h3>
+            <p>Bespoke custom solutions for specialized luxury needs, guaranteeing maximum comfort and elite standards.</p>
+        </div>
+    </div>
+</section>
+
+<!--==================================================
+  6. Our Vision Section
+==================================================-->
+<section class="about-container-centered">
+    <div class="about-content-box vision-box">
+        <h2>Our Vision</h2>
+        <p>
+            To stand as the absolute gold standard in luxury lifestyle management and concierge mobility across the Middle East. We aim to continuously refine elite transport by integrating state-of-the-art logistics with the timeless touch of authentic high-end hospitality—ensuring that for our clients, the travel experience is just as outstanding as the destination itself.
+        </p>
+    </div>
+</section>
+
+<!--==================================================
+  7. Footer Section
+==================================================-->
+<footer>
+    <p>&copy; 2026 Elegant Cars Rental. All Rights Reserved.</p>
+    <p class="footer-platform">Luxury Mobility & Concierge Platform</p>
+</footer>
 
 <script src="script.js"></script>
 </body>
