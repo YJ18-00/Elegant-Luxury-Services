@@ -7,8 +7,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exceptional Cars | Elegant Cars Rental</title>
-    
-    <!-- ربط ملف الـ CSS الموحد للموقع -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,10 +14,8 @@
     <!-- ==========================================
     02 | أزرار التحكم العلوية والقائمة الجانبية
     ========================================== -->
-    <!-- زر فتح القائمة الجانبية (Sidebar) -->
     <button class="menu-btn" onclick="openNav()">☰</button>
 
-    <!-- القائمة الجانبية للتنقل السلس بين الأقسام -->
     <div id="sidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="index.html">Home</a>
@@ -32,7 +28,7 @@
     </div>
 
     <!-- ==========================================
-    03 | رأس الصفحة (Header)
+    03 | رأس الصفحة
     ========================================== -->
     <header class="page-header">
         <!-- شعار الشركة الرئيسي -->
@@ -49,7 +45,7 @@
     </header>
 
     <!-- ==========================================
-    04 | معرض السيارات (Gallery Grid) - 6 سيارات
+    04 | معرض السيارات 
     ========================================== -->
     <section class="gallery">
         
@@ -98,14 +94,12 @@
     </section>
 
     <!-- ==========================================
-    05 | نافذة الحجز المنبثقة (Booking Modal)
+    05 | نافذة الحجز
     ========================================== -->
     <div id="bookingModal" class="modal">
         <div class="modal-box">
             <h2>Book Your Ride</h2>
             <p id="selectedCar"></p>
-            
-            <!-- تحديد مدة الإيجار -->
             <label>Rental Duration</label>
             <select id="period" onchange="calculatePrice()">
                 <option value="hour">1 Hour</option>
@@ -113,38 +107,70 @@
                 <option value="week">1 Week</option>
                 <option value="month">1 Month</option>
             </select>
-            
-            <!-- تحديد موقع الاستلام -->
             <label>Pickup Location</label>
             <select id="location" onchange="calculatePrice()">
                 <option value="office">Main Office</option>
                 <option value="airport">Bahrain Airport</option>
                 <option value="hotel">Hotel Delivery</option>
             </select>
-            
-            <!-- عرض السعر الإجمالي التقديري -->
             <h3>Total Price: <span id="price">0 BHD</span></h3>
-            
-            <!-- أزرار التأكيد والإلغاء -->
             <button onclick="sendBooking()" class="btn">Confirm Booking</button>
             <button onclick="closeModal()" class="btn close">Close</button>
         </div>
     </div>
 
     <!-- ==========================================
-    06 | زر تغيير وضع الإضاءة والفوتر والـ JS
+    06 | التذييل
     ========================================== -->
-    <!-- زر التحكم بالوضع المظلم والمضيء الموحد -->
-    <a href="javascript:void(0)" id="theme-toggle" class="theme-btn">
+<footer class="footer">
+        <div class="footer-container">
+            <!-- الشعار -->
+            <div class="footer-box">
+                <img src="images/logo.png" alt="ECR Logo" class="footer-logo">
+            </div>
+
+            <!-- الروابط السريعة -->
+            <div class="footer-box">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+            </div>
+
+            <!-- معلومات التوصل -->
+            <div class="footer-box">
+                <h3>Contact</h3>
+                <p>📍 Manama, Bahrain</p>
+                <p>📞 +973 3221 1146</p>
+                <p>✉ Elegant.Cars.Rental@ecr-bh.com</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <p class="copyright">
+            © 2026 Elegant Cars Rental (ECR) <br>
+            Luxury Mobility & Concierge Platform
+        </p>
+    </footer>
+    
+    <!-- ========================================== 
+    أزرار التحكم العلوية 07
+    ========================================== -->
+   
+    <!-- زر تبديل الوضع الليلي/النهاري -->
+     <a href="javascript:void(0)" id="theme-toggle" class="theme-btn">
         <img src="images/icon/theme-icon.png" alt="Toggle Theme" id="theme-icon">
     </a>
 
-    <!-- تذييل الصفحة (Footer) -->
-    <footer>
-        <p>© 2026 Elegant Cars Rental - Bahrain</p>
-    </footer>
+    <!-- زر الملف الشخصي وتسجيل الدخول -->
+    <a href="login.html" class="profile-btn">
+        <img src="images/icon/login icon.png" alt="login">
+    </a>
+    
+    </div>
 
-    <!-- ربط السكريبت التفاعلي للموقع -->
+    <!-- ربط ملف الـ  -->
     <script src="script.js"></script>
 </body>
+
 </html>

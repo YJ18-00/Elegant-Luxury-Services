@@ -250,7 +250,7 @@ box-shadow:var(--box-shadow);
   position: relative;
   background: linear-gradient(
     rgba(0, 0, 0, .7), rgba(0, 0, 0, .85)), 
-    url('images/background/2026-rolls-royce-phantom.png');
+    url('images/background/2026-rolls-royce-phantom.jpg');
   background-size: cover;
   background-position: center;
   display: flex;

@@ -15,572 +15,273 @@
 
     <!-- خط الموقع -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-        rel="stylesheet">
-
+    rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- زر فتح القائمة الجانبية -->
-    <button class="menu-btn" onclick="openNav()">
-        ☰
-    </button>
+    <!-- ==========================================
+     القائمة الجانبية 01
+    ========================================== --> 
 
-    <!-- القائمة الجانبية -->
+       <!-- زر فتح القائمة الجانبية -->
+       <button class="menu-btn" onclick="openNav()">☰</button>
+
     <div id="sidebar" class="sidebar">
-
         <a href="javascript:void(0)"
             class="closebtn"
             onclick="closeNav()">
             &times;
         </a>
-
         <a href="#home">Home</a>
-
         <a href="#collections">Collections</a>
-        
         <a href="about.html">About Us</a>
-
         <a href="#location">Visit Us</a>
-
         <a href="#contact">Contact Us </a>
-        
-
     </div>
 
-    <!-- الصفحة الرئيسية -->
+   <!-- ==========================================
+    02 | الصفحة الرئيسية 
+    ========================================== -->
 <section class="hero" id="home">
-
     <div class="hero-content">
-
         <div class="logo-container">
             <img src="images/logo.png"
                  alt="Elegant Cars Rental Logo"
                  class="logo">
         </div>
-
         <h1>Elegant Cars Rental</h1>
-
         <p>
             Luxury Car Rental Services For Tourists,
             Business Executives And VIP Clients In Bahrain.
         </p>
-
-        <a href="about.html" class="btn-learn-more">
-            
-            Learn More About Us
-        
-        </a>
-
-        <a href="#collections" class="btn">
-
-            Explore Collection
-
-        </a>
-
-
-
+        <a href="about.html" class="btn-learn-more">Learn More About Us</a>
+        <a href="#collections" class="btn">Explore Collection</a>
     </div>
 
 </section>
 
-    <!-- أقسام السيارات -->
-
-    <section id="collections" class="collections">
-
+    <!-- ==========================================
+     03 | أقسام السيارات 
+    ========================================== -->
+<section id="collections" class="collections">
         <h2>Vehicle Categories</h2>
 
         <div class="grid">
-
             <!-- SUVs -->
-
             <div class="card">
-
-                 <img src="images/card cover/sketch-suv-white.png"
-                alt="SUVs">
-
-                <h3>SUVs</h3>
-
-                <button onclick="showCategory('SUVs')">
-
-                    View Cars
-
-                </button>
-
+                 <img src="images/card cover/sketch-suv-white.png" alt="SUVs">
+                 <h3>SUVs</h3>
+                 <button onclick="showCategory('SUVs')" >View Cars</button>
             </div>
 
             <!-- Luxury Sedans -->
-
             <div class="card">
-                 
-                <img src="images/card cover/sketch-sedans-white.png"
-                alt="Luxury Sedans">
-
+                <img src="images/card cover/sketch-sedans-white.png" alt="Luxury Sedans">
                 <h3>Luxury Sedans</h3>
-
-                <button onclick="showCategory('Luxury Sedans')">
-
-                    View Cars
-
-                </button>
-
+                <button onclick="showCategory('Luxury Sedans')" >View Cars</button>
             </div>
 
             <!-- Minivans -->
-
             <div class="card">
-
-                 <img src="images/card cover/sketch-minivans-white.png"
-                alt="Minivans">
-
+                 <img src="images/card cover/sketch-minivans-white.png" alt="Minivans">
                 <h3>Minivans</h3>
-
-                <button onclick="showCategory('Minivans')">
-
-                    View Cars
-
-                </button>
-
+                <button onclick="showCategory('Minivans')" >View Cars</button>
             </div>
 
             <!-- Exceptional Cars -->
-
             <div class="card">
-
-                <img src="images/card cover/sketch-sportscar-white.png"
-                alt="Exceptional">
-
+                <img src="images/card cover/sketch-sportscar-white.png" alt="Exceptional">
                 <h3>Exceptional Cars</h3>
-
-                <button onclick="showCategory('Exceptional Cars')">
-
-                    View Cars
-
-                </button>
-
+                <button onclick="showCategory('Exceptional Cars')" >View Cars</button>
             </div>
 
             <!-- Convertibles -->
-
             <div class="card">
-
-                 <img src="images/card cover/sketch-convertibles-2-white.png"
-                alt="Convertibles">
-
+                 <img src="images/card cover/sketch-convertibles-2-white.png" alt="Convertibles">
                 <h3>Convertibles</h3>
-
-                <button onclick="showCategory('Convertibles')">
-
-                    View Cars
-
-                </button>
-
+                <button onclick="showCategory('Convertibles')" >View Cars</button>
             </div>
 
             <!-- City Cars -->
-
             <div class="card">
-                
                 <img src="images/card cover/sketch-citycars-white.png" alt="City Cars">
-                
                 <h3>City Cars</h3>
-                
-                <button onclick="showCategory('City Cars')">
-                    
-                    View Cars
-                
-                </button>
-            
+                <button onclick="showCategory('City Cars')" >View Cars</button>
             </div>
-
         </div>
-
     </section>
 
-    <!--==================================================
-Customer Reviews
-==================================================-->
-
+    <!-- ==========================================
+     04 | آراء العملاء
+    ========================================== -->
 <section class="reviews" id="reviews">
-
-<h2>Trusted by Professionals Worldwide</h2>
-
-<p class="reviews-subtitle">
-
-Real experiences from our valued clients.
-
-</p>
-
-<div class="reviews-grid">
-
-<!--================ Review 1 ================-->
-
-<div class="review-card">
-
-<img src="images/icon/login icon.png" class="review-img">
-
-<h3>Khalid Al Mansoor</h3>
-
-<span class="job">
-
-CEO • Al Mansoor Holdings
-
-</span>
-
-<p class="service">
-
-Service:
-Rolls-Royce Ghost
-
-</p>
-
-<div class="stars">
-
-★★★★★
-
-</div>
-
-<p class="review-text">
-
-Exceptional service from start to finish.
-The vehicle was immaculate and the chauffeur
-was highly professional.
-
-</p>
-
-</div>
-
-<!--================ Review 2 ================-->
-
-<div class="review-card">
-
-<img src="images/icon/login icon.png" class="review-img">
-
-<h3>Dr. Sarah Mitchell</h3>
-
-<span class="job">
-
-Cosmetic Dentist
-
-</span>
-
-<p class="service">
-
-Service:
-Mercedes S-Class
-
-</p>
-
-<div class="stars">
-
-★★★★★
-
-</div>
-
-<p class="review-text">
-
-The booking process was smooth and simple.
-Everything exceeded my expectations.
-
-</p>
-
-</div>
-
-<!--================ Review 3 ================-->
-
-<div class="review-card">
-
-<img src="images/icon/login icon.png" class="review-img">
-
-<h3>Ahmed Al Khalifa</h3>
-
-<span class="job">
-
-Entrepreneur
-
-</span>
-
-<p class="service">
-
-Service:
-Range Rover Autobiography
-
-</p>
-
-<div class="stars">
-
-★★★★☆
-
-</div>
-
-<p class="review-text">
-
-Excellent experience overall.
-Airport pickup could have been slightly faster.
-
-</p>
-
-</div>
-
-<!--================ Review 4 ================-->
-
-<div class="review-card">
-
-<img src="images/icon/login icon.png" class="review-img">
-
-<h3>Michael Anderson</h3>
-
-<span class="job">
-
-Investment Consultant
-
-</span>
-
-<p class="service">
-
-Service:
-Private Jet Charter
-
-</p>
-
-<div class="stars">
-
-★★★★★
-
-</div>
-
-<p class="review-text">
-
-Luxury at its finest.
-Professional staff and flawless experience.
-
-</p>
-
-</div>
-
-<!--================ Review 5 ================-->
-
-<div class="review-card">
-
-<img src="images/icon/login icon.png" class="review-img">
-
-<h3>Fatima Al Zayani</h3>
-
-<span class="job">
-
-Interior Designer
-
-</span>
-
-<p class="service">
-
-Service:
-Luxury Yacht Rental
-
-</p>
-
-<div class="stars">
-
-★★★☆☆
-
-</div>
-
-<p class="review-text">
-
-The yacht was beautiful.
-I expected a few more onboard amenities.
-
-</p>
-
-</div>
-
-<!--================ Review 6 ================-->
-
-<div class="review-card">
-
-<img src="images/icon/login icon.png" class="review-img">
-
-<h3>Omar Al Haddad</h3>
-
-<span class="job">
-
-Hotel Owner
-
-</span>
-
-<p class="service">
-
-Service:
-VIP Chauffeur
-
-</p>
-
-<div class="stars">
-
-★★★★★
-
-</div>
-
-<p class="review-text">
-
-Professional and punctual.
-Exactly the luxury service I was looking for.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-    <!-- موقع الشركة -->
-
+        <h2>Trusted by Professionals Worldwide</h2>
+        <p class="reviews-subtitle">Real experiences from our valued clients.</p>
+
+        <div class="reviews-grid">
+            <!-- Review 1 -->
+            <div class="review-card">
+                <img src="images/icon/login icon.png" class="review-img" alt="User">
+                <h3>Khalid Al Mansoor</h3>
+                <span class="job">CEO • Al Mansoor Holdings</span>
+                <p class="service">Service: Rolls-Royce Ghost</p>
+                <div class="stars">★★★★★</div>
+                <p class="review-text">
+                    Exceptional service from start to finish. The vehicle was immaculate and the chauffeur was highly professional.
+                </p>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="review-card">
+                <img src="images/icon/login icon.png" class="review-img" alt="User">
+                <h3>Dr. Sarah Mitchell</h3>
+                <span class="job">Cosmetic Dentist</span>
+                <p class="service">Service: Mercedes S-Class</p>
+                <div class="stars">★★★★★</div>
+                <p class="review-text">
+                    The booking process was smooth and simple. Everything exceeded my expectations.
+                </p>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="review-card">
+                <img src="images/icon/login icon.png" class="review-img" alt="User">
+                <h3>Ahmed Al Khalifa</h3>
+                <span class="job">Entrepreneur</span>
+                <p class="service">Service: Range Rover Autobiography</p>
+                <div class="stars">★★★★☆</div>
+                <p class="review-text">
+                    Excellent experience overall. Airport pickup could have been slightly faster.
+                </p>
+            </div>
+
+            <!-- Review 4 -->
+            <div class="review-card">
+                <img src="images/icon/login icon.png" class="review-img" alt="User">
+                <h3>Michael Anderson</h3>
+                <span class="job">Investment Consultant</span>
+                <p class="service">Service: Private Jet Charter</p>
+                <div class="stars">★★★★★</div>
+                <p class="review-text">
+                    Luxury at its finest. Professional staff and flawless experience.
+                </p>
+            </div>
+
+            <!-- Review 5 -->
+            <div class="review-card">
+                <img src="images/icon/login icon.png" class="review-img" alt="User">
+                <h3>Fatima Al Zayani</h3>
+                <span class="job">Interior Designer</span>
+                <p class="service">Service: Luxury Yacht Rental</p>
+                <div class="stars">★★★☆☆</div>
+                <p class="review-text">
+                    The yacht was beautiful. I expected a few more onboard amenities.
+                </p>
+            </div>
+
+            <!-- Review 6 -->
+            <div class="review-card">
+                <img src="images/icon/login icon.png" class="review-img" alt="User">
+                <h3>Omar Al Haddad</h3>
+                <span class="job">Hotel Owner</span>
+                <p class="service">Service: VIP Chauffeur</p>
+                <div class="stars">★★★★★</div>
+                <p class="review-text">
+                    Professional and punctual. Exactly the luxury service I was looking for.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+     05 | موقع الشركة 
+     ========================================== -->
     <section id="location" class="location">
-
         <h2>Visit Us</h2>
-
         <p>The Avenues Bahrain</p>
-
         <p>Road 4660, Manama, Bahrain</p>
-
         <p>Phone: +973 3221 1146</p>
 
         <!-- خريطة جوجل -->
-
-        <iframe
-            src="https://maps.google.com/maps?q=The%20Avenues%20Bahrain&t=&z=16&ie=UTF8&iwloc=&output=embed">
-        </iframe>
-
+        <iframe 
+        src="https://maps.google.com/maps?q=The%20Avenues%20Bahrain&t=&z=16&ie=UTF8&iwloc=&output=embed"></iframe>
     </section>
 
-    <!-- صفحة التواصل -->
-
-    <section id="contact" class="contact">
-
-        <h2>Contact Us</h2>
-
-        <form id="contactForm">
-
-            <input type="text"
-                id="name"
-                placeholder="Full Name">
-
-            <input type="email"
-                id="email"
-                placeholder="Email Address">
-
-            <textarea
-                id="message"
-                placeholder="Message">
-            </textarea>
-
-            <button type="submit">
-
-                Send Message
-
-            </button>
-
-        </form>
-
-    </section>
+    <!-- ==========================================
+    06 | نموذج التواصل
+    ========================================== -->
+        <section id="contact" class="contact">
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <input type="text" id="name" placeholder="Full Name" required>
+                <input type="email" id="email" placeholder="Email Address" required>
+                <textarea id="message" placeholder="Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
 
     <!-- زر واتساب -->
 
-    <a class="whatsapp"
-        href="https://wa.me/97332211146?text=Hello%20Elegant%20Cars%20Rental"
-        target="_blank">
-
+    <a class="whatsapp" href="https://wa.me/97332211146?text=Hello%20Elegant%20Cars%20Rental" target="_blank">
         WhatsApp
-
     </a>
 
-<!--==================================================
-Footer
-==================================================-->
-
+    <!-- ==========================================
+     07 | التذييل
+    ========================================== -->
 <footer class="footer">
+        <div class="footer-container">
+            <!-- الشعار -->
+            <div class="footer-box">
+                <img src="images/logo.png" alt="ECR Logo" class="footer-logo">
+            </div>
 
-    <div class="footer-container">
+            <!-- الروابط السريعة -->
+            <div class="footer-box">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="#collections">Collections</a>
+                <a href="#contact">Contact</a>
+            </div>
 
-        <!-- Company -->
-
-        <div class="footer-box">
-
-            <img src="images/logo.png" alt="ECR Logo" class="footer-logo">
-
+            <!-- معلومات التوصل -->
+            <div class="footer-box">
+                <h3>Contact</h3>
+                <p>📍 Manama, Bahrain</p>
+                <p>📞 +973 3221 1146</p>
+                <p>✉ Elegant.Cars.Rental@ecr-bh.com</p>
+            </div>
         </div>
 
-        <!-- Quick Links -->
+        <hr>
 
-        <div class="footer-box">
-
-            <h3>Quick Links</h3>
-
-            <a href="index.html">Home</a>
-
-            <a href="about.html">About</a>
-
-            <a href="#collections">Collections</a>
-
-            <a href="#contact">Contact</a>
-
-        </div>
-
-        <!-- Contact -->
-
-        <div class="footer-box">
-
-            <h3>Contact</h3>
-
-            <p>📍 Manama, Bahrain</p>
-
-            <p>📞 +973 3221 1146</p>
-
-            <p>✉ info@ecr-bh.com</p>
-
-        </div>
-
-    </div>
-
-    <hr>
-
-    <p class="copyright">
-
-        © 2026 Elegant Cars Rental (ECR)
-        <br>
-        Luxury Mobility & Concierge Platform
-
-    </p>
-
-</footer>
-
-    <!-- زر تبديل الوضع (Dark/Light) باستخدام الصورة -->
-
+        <p class="copyright">
+            © 2026 Elegant Cars Rental (ECR) <br>
+            Luxury Mobility & Concierge Platform
+        </p>
+    </footer>
+    
+    <!-- ========================================== 
+    أزرار التحكم العلوية 08
+    ========================================== -->
+   
+    <!-- زر تبديل الوضع الليلي/النهاري -->
      <a href="javascript:void(0)" id="theme-toggle" class="theme-btn">
+        <img src="images/icon/theme-icon.png" alt="Toggle Theme" id="theme-icon">
+    </a>
 
-    <img src="images/icon/theme-icon.png" alt="Toggle Theme" id="theme-icon">
-
-</a>
-
-    <!-- تجيل الدخول -->
-
+    <!-- زر الملف الشخصي وتسجيل الدخول -->
     <a href="login.html" class="profile-btn">
-
-    <img src="images/icon/login icon.png" alt="login">
-
+        <img src="images/icon/login icon.png" alt="login">
     </a>
     
     </div>
 
-    <!-- ربط  -->
-
+    <!-- ربط ملف الـ  -->
     <script src="script.js"></script>
-
-</a>
-
 </body>
 
 </html>

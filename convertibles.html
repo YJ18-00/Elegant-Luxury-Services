@@ -28,7 +28,7 @@
     </div>
 
     <!-- ==========================================
-    03 | رأس الصفحة (Header)
+    03 | رأس الصفحة
     ========================================== -->
     <header class="page-header">
         <img src="images/logo.png" alt="Elegant Cars Rental" class="page-logo">
@@ -38,13 +38,13 @@
     </header>
 
     <!-- ==========================================
-    04 | معرض السيارات المكشوفة - 6 سيارات من الحساب
+    04 | معرض السيارات 
     ========================================== -->
     <section class="gallery">
         
         <!-- السيارة 1: Rolls-Royce Phantom -->
         <div class="gallery-item">
-            <img src="images/convertibles/Rolls-Royce Phantom Coupe/F1.jpg" alt="Rolls-Royce Phantom">
+            <img src="images/convertibles/Rolls-Royce Phantom Coupe/F1.png" alt="Rolls-Royce Phantom">
             <h3>Rolls-Royce Phantom</h3>
             <button onclick="bookCar('Rolls-Royce Phantom')">Book Now</button>
         </div>
@@ -58,7 +58,7 @@
 
         <!-- السيارة 3: Ferrari Portofino -->
         <div class="gallery-item">
-            <img src="images/convertibles/Ferrari Portofino/F1.jpg" alt="Ferrari Portofino">
+            <img src="images/convertibles/Ferrari Portofino/F1.png" alt="Ferrari Portofino">
             <h3>Ferrari Portofino</h3>
             <button onclick="bookCar('Ferrari Portofino')">Book Now</button>
         </div>
@@ -87,7 +87,7 @@
     </section>
 
     <!-- ==========================================
-    05 | نافذة الحجز والتحكم بالثيم والفوتر
+    05 | نافذة الحجز
     ========================================== -->
     <div id="bookingModal" class="modal">
         <div class="modal-box">
@@ -112,14 +112,58 @@
         </div>
     </div>
 
-    <a href="javascript:void(0)" id="theme-toggle" class="theme-btn">
+    <!-- ==========================================
+     06 | التذييل
+    ========================================== -->
+<footer class="footer">
+        <div class="footer-container">
+            <!-- الشعار -->
+            <div class="footer-box">
+                <img src="images/logo.png" alt="ECR Logo" class="footer-logo">
+            </div>
+
+            <!-- الروابط السريعة -->
+            <div class="footer-box">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+            </div>
+
+            <!-- معلومات التوصل -->
+            <div class="footer-box">
+                <h3>Contact</h3>
+                <p>📍 Manama, Bahrain</p>
+                <p>📞 +973 3221 1146</p>
+                <p>✉ Elegant.Cars.Rental@ecr-bh.com</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <p class="copyright">
+            © 2026 Elegant Cars Rental (ECR) <br>
+            Luxury Mobility & Concierge Platform
+        </p>
+    </footer>
+    
+    <!-- ========================================== 
+    أزرار التحكم العلوية 07
+    ========================================== -->
+   
+    <!-- زر تبديل الوضع الليلي/النهاري -->
+     <a href="javascript:void(0)" id="theme-toggle" class="theme-btn">
         <img src="images/icon/theme-icon.png" alt="Toggle Theme" id="theme-icon">
     </a>
 
-    <footer>
-        <p>© 2026 Elegant Cars Rental - Bahrain</p>
-    </footer>
+    <!-- زر الملف الشخصي وتسجيل الدخول -->
+    <a href="login.html" class="profile-btn">
+        <img src="images/icon/login icon.png" alt="login">
+    </a>
+    
+    </div>
 
+    <!-- ربط ملف الـ  -->
     <script src="script.js"></script>
 </body>
+
 </html>
