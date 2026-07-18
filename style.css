@@ -539,6 +539,20 @@ form button {
 /*==================================================
 11 | صفحة تسجيل الدخول
 ==================================================*/
+
+/* حاوية الصفحة الرئيسية المتجاوبة مع الثيم */
+.login-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--bg-color);
+  transition: background 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* صندوق كارد تسجيل الدخول */
 .login-box {
   width: 400px;
   max-width: 90%;
@@ -549,20 +563,24 @@ form button {
   border-radius: 15px;
   text-align: center;
   box-shadow: var(--box-shadow);
+  position: relative;
+  z-index: 5;
+  backdrop-filter: blur(8px);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* عنوان تسجيل الدخول */
+/* عنوان الكارد الرئيسي */
 .login-box h2 {
   color: var(--primary-color);
   margin-bottom: 10px;
 }
 
-/* النص التعريفي */
+/* النص التعريفي الفرعي */
 .login-box p {
   margin-bottom: 20px;
 }
 
-
+/* حقول الإدخال (اسم المستخدم وكلمة المرور) */
 .login-box input {
   width: 100%;
   padding: 12px;
@@ -572,7 +590,7 @@ form button {
   color: var(--text-color);
 }
 
-/* زر تسجيل الدخول */
+/* زر إرسال البيانات وتسجيل الدخول */
 .login-box button {
   width: 100%;
   padding: 12px;
@@ -582,11 +600,50 @@ form button {
   font-weight: bold;
 }
 
-/* رسالة الخطأ */
+/* رسالة الخطأ أو النجاح أسفل الفورم */
 #msg {
   margin-top: 15px;
   color: red;
   font-weight: bold;
+}
+
+/* حاوية الجزيئات المتساقطة بالخلفية */
+.login-bg-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* تصميم الجزيء الواحد المتحرك */
+.particle {
+  position: absolute;
+  top: -10px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--primary-color);
+  animation: fall linear forwards;
+}
+
+/* حركة سقوط الجزيئات من الأعلى للأسفل */
+@keyframes fall {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
 }
 
 /*==================================================

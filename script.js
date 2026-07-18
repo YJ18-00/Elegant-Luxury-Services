@@ -136,7 +136,7 @@ function closeModal() {
 
 
 /*====================================================================
-  4. التحقق من النماذج وتسجيل الدخول (FORMS & LOGIN)
+  4. التحقق من النماذج 
 ====================================================================*/
 
 // التحقق من نموذج التواصل
@@ -164,28 +164,78 @@ if (form) {
   });
 }
 
-// تسجيل الدخول
-function login() {
-  const userEl = document.getElementById("user");
-  const passEl = document.getElementById("pass");
-  
-  if (!userEl || !passEl) return;
+
+/*==================================================
+5. تسجيل الدخول والتحقق من اسم المستخدم وكلمة المرور
+==================================================*/
+
+function handleLogin(event) {
+
+  // منع الصفحة من التحديث التلقائي عند الضغط على الزر
+  event.preventDefault();
+
+  const userEl = document.getElementById("username");
+  const passEl = document.getElementById("password");
+  const msgEl = document.getElementById("msg");
+
+  if (!userEl || !passEl) return false;
 
   const username = userEl.value.trim();
   const password = passEl.value.trim();
 
-  if(username === "" || password === "") {
-    alert("Please Enter Username And Password");
-    return;
+  // التحقق من أن الحقول ليست فارغة
+  if (username === "" || password === "") {
+    if (msgEl) {
+      msgEl.style.color = "red";
+      msgEl.innerText = "Please Enter Username And Password";
+    } else {
+      alert("Please Enter Username And Password");
+    }
+    return false;
   }
 
+  // في حال النجاح: إظهار التنبيه ثم الانتقال لصفحة index.html
   alert("Login Successful");
   window.location.href = "index.html";
+  return false;
 }
 
+/*==================================================
+  تأثير الجزيئات المتساقطة
+==================================================*/
+function initLoginParticles() {
+    const container = document.getElementById('particlesContainer');
+    if (!container) return; // إذا مش في صفحة الـ Login ما يشغل الكود ولا يسبب خطأ
+
+    function createParticle() {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+
+        const size = Math.random() * 4 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}vw`;
+
+        const duration = Math.random() * 5 + 5;
+        particle.style.animationDuration = `${duration}s`;
+        particle.style.opacity = Math.random() * 0.5 + 0.2;
+
+        container.appendChild(particle);
+
+        setTimeout(() => {
+            particle.remove();
+        }, duration * 1000);
+    }
+
+    // توليد الجزيئات بانتظام
+    setInterval(createParticle, 300);
+}
+
+// تشغيل الدالة تلقائياً عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', initLoginParticles);
 
 /*====================================================================
-  5. مظهر الموقع والوضع الليلي (THEME: DARK / LIGHT MODE)
+  6. مظهر الموقع والوضع الليلي
 ====================================================================*/
 
 // دالة لتحديث أيقونة الوضع (شمس أو قمر)
@@ -230,7 +280,7 @@ if (themeToggleBtn) {
 }
 
 /*====================================================================
-  6. BACKGROUND HERO SLIDER (5 SECONDS TRANSITION)
+  7. تدوير الشرائح التلقائي 
 ====================================================================*/
 window.addEventListener("DOMContentLoaded", () => {
   const slides = document.querySelectorAll(".hero-slide");

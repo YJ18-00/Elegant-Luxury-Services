@@ -1,92 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <!-- معلومات الصفحة -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- عنوان الصفحة -->
     <title>Login | Elegant Cars Rental</title>
-
-    <!-- ربط CSS -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- خط الموقع -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
+<body class="login-page">
 
-<body>
+    <!-- حاوية الجزيئات المتساقطة في الخلفية -->
+    <div class="login-bg-particles" id="particlesContainer"></div>
 
-    <!-- شعار الشركة -->
-
-    <img src="images/logo.png"
-         alt="Elegant Cars Rental"
-         class="logo-small">
-
-    <!-- صندوق تسجيل الدخول -->
-
-    <div class="login-box">
-
-        <h2>Member Login</h2>
-
-        <p>
-            Access Elegant Cars Rental Services
-        </p>
-
-        <!-- اسم المستخدم -->
-
-        <input type="text"
-               id="user"
-               placeholder="Username">
-
-        <!-- كلمة المرور -->
-
-        <input type="password"
-               id="pass"
-               placeholder="Password">
-
-        <!-- زر تسجيل الدخول -->
-
-        <button onclick="login()">
-
-            Login
-
-        </button>
-
-        <!-- رسالة الخطأ -->
-
-        <p id="msg"></p>
-
-        <br>
-
-        <!-- الرجوع للصفحة الرئيسية -->
-
-        <a href="index.html"
-           class="btn">
-
-            Back To Home
-
-        </a>
-
-    </div>
-
-    <!-- زر تبديل الوضع (Dark/Light) باستخدام الصورة -->
-
+    <!-- أزرار التحكم العلوية -->
+    <a href="index.html" class="back-btn" style="position: fixed; left: 20px; top: 20px; z-index: 1000;">Back to Home</a>
+    
+    <!-- زر تبديل الوضع باستخدام الصورة -->
      <a href="javascript:void(0)" id="theme-toggle" class="theme-btn">
-
     <img src="images/icon/theme-icon.png" alt="Toggle Theme" id="theme-icon">
-
 </a>
 
+    <!-- صندوق تسجيل الدخول -->
+    <div class="login-box">
+        <h2>Welcome Back</h2>
+        <p>Login to your premium mobility account</p>
+        
+        <form id="loginForm" onsubmit="return handleLogin(event)">
+            <input type="text" id="username" placeholder="Username or Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        
+        <div id="msg"></div>
+    </div>
 
-    <!-- ربط JavaScript -->
-
+    <!-- ربط ملف الـ JavaScript الرئيسي -->
     <script src="script.js"></script>
-
+    
 </body>
 
 </html>
