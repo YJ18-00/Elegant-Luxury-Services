@@ -96,7 +96,9 @@ a#theme-toggle.theme-btn {
   top: 20px !important;   /* ضبط الارتفاع ليتناسق مع البروفايل */
   width: 55px !important;  /* حجم مطابق لزر البروفايل */
   height: 55px !important;
-  background-color: #141414 !important; 
+  background-color: var(--card-color) !important; /* يتغير تلقائياً حسب الثيم */
+  color: var(--text-color) !important; /* يغير لون الأيقونة لتصبح واضحة */
+  border: 1px solid var(--border-color); /* اختياري: ليعطي حدوداً جميلة في الوضعين */ 
   border-radius: 50% !important;
   display: flex !important;
   justify-content: center !important;
@@ -455,51 +457,299 @@ box-shadow:0 12px 25px var(--shadow-color);
 }
 
 /*==================================================
-09 | نافذة الحجز
+09  لوحة المعاينة الجانبية الفاخرة
 ==================================================*/
 
-/*خلفية النافذة المنبثقة (Modal)*/
-.modal {
-  display: none;
+/* الحاوية الخلفية المعتمة والمبهرة للـ Blur */
+.drawer-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-/*صندوق البيانات الداخلي والقوائم*/
-.modal-box {
-  background: var(--card-color);
-  padding: 30px;
-  border: 1px solid var(--primary-color);
-  width: 350px;
-  border-radius: var(--radius);
-  text-align: center;
+.drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
 }
 
-.modal-box select {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
+/* الهيكل الرئيسي للوحة العرض */
+.drawer-panel {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 85%;
+  max-width: 1250px;
+  height: 100vh;
   background: var(--card-color);
   color: var(--text-color);
-  border: 1px solid var(--primary-color);
+  box-shadow: -15px 0 40px rgba(0, 0, 0, 0.6);
+  display: flex;
+  transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 2001;
+  overflow-y: auto; /* هذا التعديل لضمان ظهور كامل المحتوى على الشاشات الصغيرة */
 }
 
-.modal-box h3 {
+.drawer-overlay.active .drawer-panel {
+  right: 0;
+}
+
+/* زر الإغلاق */
+.drawer-close-btn {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  background: none;
+  border: none;
+  font-size: 2.8rem;
   color: var(--primary-color);
-  margin: 15px 0;
+  cursor: pointer;
+  z-index: 2010;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+.drawer-close-btn:hover { transform: scale(1.15); }
+
+/* --------------------------------------------------------------------------
+   الشق الأيسر: ضبط الصورة بالمنتصف تماماً وبحجم ضخم بدون Padding زائد
+   -------------------------------------------------------------------------- */
+.drawer-left {
+  flex: 1.4;
+  background: rgba(20, 20, 20, 0.12) !important;
+  backdrop-filter: blur(35px) !important;
+  -webkit-backdrop-filter: blur(35px) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* توسيط العناصر داخلياً بشكل كامل */
+  padding: 0px !important;  /* تصفير الـ padding لمنع أي إزاحة إضافية */
+  position: relative;
+  border-right: 1px solid rgba(128, 128, 128, 0.15);
 }
 
-/*زر إغلاق النافذة*/
-.close {
-  background: var(--primary-color);
+/* حاوية السلايدر الضخمة المحررة */
+.image-container-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* توسيط أفقي */
+  align-items: center;     /* توسيط عمودي */
+  width: 100% !important;
+  height: 80vh;
+}
+
+/* تكبير وتوضيح الصورة بالحد الأقصى المتاح */
+.image-container-wrapper img#drawerCarImage {
+  width: 95% !important;   /* تكبير الأبعاد لملء المساحة */
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain !important;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.7));
+}
+
+/* أسهم الحركة الجانبية المثبتة حول الصورة بدقة */
+.slide-arrow {
+  position: absolute; /* تثبيت مطلق لضمان بقائها على الأطراف وعدم زحفها */
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--card-color) !important;
+  border: 1px solid var(--primary-color) !important;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2005;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+.left-arrow { left: 25px; }  /* السهم الأيسر في أقصى اليسار */
+.right-arrow { right: 25px; } /* السهم الأيمن في أقصى اليمين */
+
+.slide-arrow img { width: 22px; height: 22px; filter: var(--text-color); }
+.slide-arrow:hover { transform: translateY(-50%) scale(1.1); background: var(--primary-color) !important; }
+.slide-arrow:hover img { filter: brightness(0) invert(1); }
+
+/* --------------------------------------------------------------------------
+   الشق الأيمن: توسيط العنوان + معالجة صور الأيقونات
+   -------------------------------------------------------------------------- */
+.drawer-right {
+  flex: 1;
+  padding: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  background: var(--card-color);
+}
+
+/* توسيط اسم السيارة في المنتصف تماماً بناءً على طلبك */
+#drawerCarName {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: center !important; /* التوسيط الصارم */
   margin-top: 10px;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+.drawer-line { border: 0; height: 1px; background: rgba(128, 128, 128, 0.2); margin: 20px 0; }
+
+/* هيكلة خطوط المواصفات */
+.details-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
+
+.details-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 5px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+  font-size: 1.05rem;
+}
+
+.detail-label {
+  color: var(--text-color);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px; /* مسافة بين أيقونة الصورة والنص */
+}
+
+/* تنسيق وحجم الأيقونات الصور الجديدة */
+.spec-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.detail-value { color: var(--primary-color); font-weight: 700; }
+
+/* --------------------------------------------------------------------------
+   المعالجة الذكية الشاملة لمربع الكالندر (التحكم بالحواف والخلفية حسب الثيم)
+   -------------------------------------------------------------------------- */
+.booking-controls .input-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
+.booking-controls label { font-size: 0.95rem; font-weight: 600; }
+
+/* إعدادات حواف الكالندر التفاعلية */
+.booking-controls input[type="date"], 
+.booking-controls select {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  border-radius: 8px;
+  outline: none;
+  background: #1e1e1e !important;   /* الخلفية الداكنة الافتراضية في وضع الـ Dark */
+  border: 1px solid #ffffff !important; /* حواف بيضاء تماماً في وضع الـ Dark */
+  color: #ffffff !important;
+  color-scheme: dark !important;
+  transition: all 0.3s ease;
+}
+
+/* المعالجة الانعكاسية الذكية عند تفعيل الـ Light Mode */
+body.light .booking-controls input[type="date"],
+body.light .booking-controls select {
+  background: #e0e0e0 !important;   /* خلفية فاتحة رمادية مريحة */
+  border: 1px solid #000000 !important; /* حواف سوداء داكنة وصريحة تماماً في وضع الـ Light */
+  color: #000000 !important;
+  color-scheme: light !important;      /* إجبار محرك الكالندر على التحول بالكامل */
+}
+
+/* أزرار الإجراء الفوري للحجز والسعر */
+.price-action-zone { margin-top: 25px; border-top: 1px solid rgba(128, 128, 128, 0.2); padding-top: 20px; }
+.price-display { font-size: 1.4rem; margin-bottom: 15px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+.price-display span { color: var(--primary-color); font-size: 2.2rem; font-weight: 800; }
+.book-now-final-btn {
+  width: 100%; padding: 16px; background: var(--primary-color); color: #fff;
+  border: none; font-weight: 700; font-size: 1.15rem; border-radius: 8px; cursor: pointer; transition: background 0.3s;
+}
+.book-now-final-btn:hover { background: var(--hover-color); }
+
+/* عندما يكون الثيم الافتراضي داكن (Dark) تكون الأيقونات والأسهم بيضاء ناصعة */
+.slide-arrow img,
+.spec-icon {
+    filter: brightness(0) invert(1); /* تحويل كامل للون الأبيض */
+    transition: filter 0.3s ease;
+}
+
+/* عندما يتفعل الوضع الفاتح (Light) نقلب الأيقونات والأسهم للون الأسود الداكن */
+body.light .slide-arrow img,
+body.light .spec-icon {
+    filter: brightness(0) grayscale(1); /* تحويل كامل للون الأسود */
+}
+
+/* حركة هوفر (Hover) ذكية: عند تمرير الماوس على السهم في الوضع الفاتح يرجع أبيض لأن الخلفية بتصير ذهبية */
+body.light .slide-arrow:hover img {
+    filter: brightness(0) invert(1);
+}
+
+/* ==========================================================================
+   إعدادات التجاوب مع الجوالات (Responsive Design for Mobile)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* جعل اللوحة الجانبية تأخذ مساحة الشاشة كاملة في الجوال */
+    .drawer-panel {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex-direction: column !important; /* قلب الشقين فوق بعض بدل جنب بعض */
+        overflow-y: auto !important; /* السماح بسكرول عمودي لجسم اللوحة كامل */
+    }
+
+    /* الشق الأيسر (منطقة الصورة والأسهم) في الجوال */
+    .drawer-left {
+        flex: none !important;
+        width: 100% !important;
+        height: 40vh !important; /* تحديد نصف الشاشة العلوي للصورة */
+        border-right: none !important;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+        padding: 10px !important;
+    }
+
+    /* تصغير حاوية الصورة لتناسب شاشة الجوال الدقيقة */
+    .image-container-wrapper {
+        height: 35vh !important;
+    }
+
+    .image-container-wrapper img#drawerCarImage {
+        max-height: 30vh !important;
+        width: auto !important;
+    }
+
+    /* تقريب الأسهم قليلاً في الجوال لكي لا تخرج خارج الشاشة */
+    .left-arrow { left: 10px; }
+    .right-arrow { right: 10px; }
+    .slide-arrow { width: 45px; height: 45px; } /* تصغير حجم أزرار الأسهم قليلاً */
+
+    /* الشق الأيمن (المواصفات والتواريخ) في الجوال */
+    .drawer-right {
+        flex: none !important;
+        width: 100% !important;
+        padding: 20px !important; /* تقليل الحواف الزائدة لمنح مساحة للكتابة */
+        overflow-y: visible !important;
+    }
+
+    #drawerCarName {
+        font-size: 1.8rem !important; /* تصغير الخط ليناسب شاشة الجوال */
+    }
+
+    .details-row {
+        padding: 10px 0 !important;
+        font-size: 0.95rem !important;
+    }
 }
 
 /*==================================================
@@ -939,7 +1189,7 @@ Services Grid Section (6 Premium Cards)
 }
 
 /*==================================================
-Why Choose Us (6 Feature Boxes)
+ 15 | Why Choose Us (6 Feature Boxes)
 ==================================================*/
 .why-choose-section {
   padding: 80px 8%;
@@ -996,18 +1246,6 @@ Why Choose Us (6 Feature Boxes)
 .feature-box:hover p {
   color: var(--text-color);
 }
-
-/*==================================================
-Footer Meta Styles Adjustments
-==================================================*/
-.footer-platform {
-  font-size: 0.85rem;
-  margin-top: 8px;
-  letter-spacing: 1px;
-  color: var(--secondary-color);
-  text-transform: uppercase;
-}
-
 /*==================================================
 Responsive Queries for Redesigned Grid Elements
 ==================================================*/
@@ -1069,14 +1307,14 @@ Theme Toggle Button Fixing (Floating Style)
 }
 
 /*==================================================
-15 | صفحة التواصل
+16 | صفحة التواصل
 ==================================================*/
 .contact {
   padding: 80px 8%;
 }
 
 /*==================================================
-16 | زر الواتساب
+17 | زر الواتساب
 ==================================================*/
 
 /*الزر العائم والتأثير الحركي*/
@@ -1098,12 +1336,12 @@ Theme Toggle Button Fixing (Floating Style)
 }
 
 /*==================================================
-17 | Footer
+18 | Footer
 ==================================================*/
 
 .footer{
 
-background:#111;
+background:var(--bg-primary);
 
 padding:60px 8% 30px;
 
@@ -1193,7 +1431,7 @@ font-size:.95rem;
 
 line-height:1.8;
 
-color:#888;
+color:var(--secondary-color);
 
 }
 
@@ -1216,7 +1454,7 @@ padding-left:0;
 }
 
 /*==================================================
-18 | Customer Reviews
+19 | Customer Reviews
 ==================================================*/
 
 .reviews{
@@ -1358,7 +1596,7 @@ font-size:.97rem;
 }
 
 /*============================
-Responsive
+ 20 | Responsive
 ============================*/
 
 @media(max-width:1000px){
@@ -1393,10 +1631,6 @@ padding:30px 20px;
 
 }
 
-/*==================================================
-19 | التجاوب مع الشاشات
-==================================================*/
-
 /*الشاشات المتوسطة - تابلت*/
 @media (max-width: 900px) {
   .grid {
@@ -1425,4 +1659,19 @@ html{
 
 scroll-behavior:smooth;
 
+}
+
+/* تحسين الـ Drawer على الشاشات الصغيرة جداً */
+@media (max-width: 768px) {
+  .drawer-panel {
+    width: 100% !important; /* يأخذ كامل الشاشة على الهاتف */
+    flex-direction: column; /* تحويل الشق الأيمن والأيسر فوق بعضهما */
+  }
+  .drawer-left, .drawer-right {
+    flex: none;
+    width: 100%;
+  }
+  .image-container-wrapper {
+    height: 40vh; /* تصغير حجم حاوية السيارة لتناسب شاشة الهاتف */
+  }
 }

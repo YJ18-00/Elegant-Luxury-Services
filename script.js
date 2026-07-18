@@ -53,87 +53,149 @@ function showCategory(category) {
   }
 }
 
-
 /*====================================================================
-  3. نظام الحجز والأسعار (BOOKING SYSTEM)
+  3. نظام الحجز والأسعار المطور (BOOKING SYSTEM & DRAWER)
 ====================================================================*/
 
-let currentCar = ""; // تعريف المتغير لحفظ السيارة المحددة حالياً
+// 1. قاعدة البيانات المحدثة: أضفنا folderName لمطابقة اسم المجلد الفعلي على جهازك
+const carDatabase = {
+    "Lamborghini Urus": {
+        folderName: "Lamborghini Urus", // تأكد إذا كان اسم المجلد بحروف صغيرة غيره هنا مثلاً إلى "urus"
+        model: "2026", hp: "666", engine: "V8 Twin-Turbo", topSpeed: "306", acceleration: "3.5", seats: "5", pricePerDay: 450,
+        images: ["f1.png", "in1.png"]
+    }, 
+    "Range Rover Vogue": {
+        folderName: "Range Rover Vogue", // اكتب اسم المجلد الفعلي للرينج فوج هنا
+        model: "2025", hp: "523", engine: "V8 P530", topSpeed: "250", acceleration: "4.6", seats: "5", pricePerDay: 120,
+        images: ["f1.png", "f2.png", "in1.png",]
+    },
+    "Audi Q8": {
+        folderName: "Audi Q8", // اكتب اسم مجلد الأودي الفعلي هنا
+        model: "2025", hp: "335", engine: "V6 3.0T", topSpeed: "250", acceleration: "5.6", seats: "5", pricePerDay: 55,
+        images: ["f1.png", "in1.png"]
+    },
+    "Bentley Bentayga V8": {
+        folderName: "Bentley Bentayga V8",
+        model: "2026", hp: "542", engine: "V8 Twin-Turbo", topSpeed: "290", acceleration: "4.5", seats: "5", pricePerDay: 380,
+        images: ["F1.png", "f2.png", "In1.png"]
+    },
+    "Range Rover Sport": {
+        folderName: "Range Rover Sport",
+        model: "2025", hp: "395", engine: "Inline-6", topSpeed: "240", acceleration: "5.7", seats: "5", pricePerDay: 95,
+        images: ["f1.png", "In1.png"]
+    },
+    "Lexus LX 600 VIP": {
+        folderName: "Lexus LX 600 VIP",
+        model: "2026", hp: "409", engine: "V6 Twin-Turbo", topSpeed: "210", acceleration: "6.9", seats: "4", pricePerDay: 110,
+        images: ["f1.png", "In1.png"]
+    }
+};
 
-// فتح نافذة الحجز
-function bookCar(car) {
-  currentCar = car;
-  const modal = document.getElementById("bookingModal");
-  const selectedCarText = document.getElementById("selectedCar");
-  
-  if (modal) modal.style.display = "flex";
-  if (selectedCarText) selectedCarText.innerText = car;
-  
-  calculatePrice();
+let currentCarKey = "";
+let currentSlideIndex = 0;
+
+// 2. دالة فتح الـ Drawer وضخ البيانات بالكامل وإخفاء زر الثيم
+function openDrawer(carName) {
+    currentCarKey = carName;
+    const carData = carDatabase[carName];
+    if (!carData) return;
+
+    currentSlideIndex = 0;
+
+    // تعبئة مواصفات السيارة في الشق الأيمن الموسط بشكل متناسق مع HTML
+    document.getElementById("drawerCarName").innerText = carName;
+    document.getElementById("specHp").innerText = `${carData.hp} HP`;
+    document.getElementById("specEngine").innerText = carData.engine || "N/A";
+    document.getElementById("specTopSpeed").innerText = `${carData.topSpeed || "--"} km/h`;
+    document.getElementById("specAcceleration").innerText = `${carData.acceleration || "--"} s`;
+    document.getElementById("specSeats").innerText = carData.seats;
+    
+    // إعادة ضبط حقول التواريخ والسعر
+    document.getElementById("startDate").value = "";
+    document.getElementById("endDate").value = "";
+    document.getElementById("drawerTotalPrice").innerText = "0";
+
+    updateSliderImage();
+
+    // إخفاء زر تغيير الثيم فوراً عند فتح الـ Drawer لعدم تداخل العناصر بصرياً
+    const themeBtn = document.getElementById("theme-toggle");
+    if (themeBtn) {
+        themeBtn.style.setProperty("display", "none", "important");
+    }
+
+    document.getElementById("bookingDrawer").classList.add("active");
 }
 
-// حساب سعر الإيجار حسب المدة ومكان الاستلام
-function calculatePrice() {
-  const periodEl = document.getElementById("period");
-  const locationEl = document.getElementById("location");
-  const priceEl = document.getElementById("price");
-  
-  if (!periodEl || !locationEl) return 0;
+// 3. دالة إغلاق الـ Drawer وإعادة إظهار زر الثيم بأمان
+function closeDrawer() {
+    document.getElementById("bookingDrawer").classList.remove("active");
 
-  let period = periodEl.value;
-  let location = locationEl.value;
-  let price = 0;
-
-  // احتساب السعر الأساسي بناءً على المدة
-  if(period === "hour") price = 50;
-  if(period === "day") price = 150;
-  if(period === "week") price = 900;
-  if(period === "month") price = 3000;
-  if(period === "year") price = 30000;
-
-  // رسوم إضافية حسب مكان الاستلام
-  if(location === "airport") price += 20;
-  if(location === "hotel") price += 15;
-
-  if (priceEl) {
-    priceEl.innerText = price + " BHD";
-  }
-  return price;
+    // إعادة زر تغيير الثيم للظهور مجدداً عند الإغلاق
+    const themeBtn = document.getElementById("theme-toggle");
+    if (themeBtn) {
+        themeBtn.style.setProperty("display", "flex", "important"); 
+    }
 }
 
-// إرسال بيانات الحجز إلى واتساب
-function sendBooking() {
-  const periodEl = document.getElementById("period");
-  const locationEl = document.getElementById("location");
-  
-  if (!periodEl || !locationEl) return;
-
-  let period = periodEl.value;
-  let location = locationEl.value;
-  let price = calculatePrice();
-
-  let message = 
-`Elegant Cars Rental Booking
-
-Car: ${currentCar}
-Duration: ${period}
-Pickup Location: ${location}
-Price: ${price} BHD`;
-
-  alert("Booking Successful");
-
-  window.open(
-    "https://wa.me/97332211146?text=" + encodeURIComponent(message),
-    "_blank"
-  );
+// 4. الدالة الذكية لبناء المسار التلقائي المعتمد لملفات السيارات (imges/suvs/)
+function updateSliderImage() {
+    const carData = carDatabase[currentCarKey];
+    if (carData && carData.images && carData.images.length > 0) {
+        // نستخدم هنا carData.folderName بدلاً من المفتاح الأساسي لضمان دقة المسار
+        document.getElementById("drawerCarImage").src = "images/suvs/" + carData.folderName + "/" + carData.images[currentSlideIndex];
+    }
 }
 
-// إغلاق نافذة الحجز
-function closeModal() {
-  const modal = document.getElementById("bookingModal");
-  if (modal) modal.style.display = "none";
+// 5. التحكم في التنقل بالأسهم يميناً ويساراً للصورة المكبرة الموسطة
+function changeSlide(direction) {
+    const carData = carDatabase[currentCarKey];
+    if (!carData) return;
+    currentSlideIndex += direction;
+    if (currentSlideIndex >= carData.images.length) currentSlideIndex = 0;
+    if (currentSlideIndex < 0) currentSlideIndex = carData.images.length - 1;
+    updateSliderImage();
 }
 
+// 6. دالة حساب السعر الحي والديناميكي التفاعلي عند تغيير تواريخ الكالندر
+function calculateLivePrice() {
+    const startDateVal = document.getElementById("startDate").value;
+    const endDateVal = document.getElementById("endDate").value;
+    const priceDisplay = document.getElementById("drawerTotalPrice");
+    const carData = carDatabase[currentCarKey];
+
+    if (!startDateVal || !endDateVal || !carData) {
+        priceDisplay.innerText = "0";
+        return;
+    }
+
+    const start = new Date(startDateVal);
+    const end = new Date(endDateVal);
+    
+    // حساب الفارق بالأيام
+    const timeDiff = end.getTime() - start.getTime();
+    const days = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+    if (days > 0) {
+        const totalPrice = days * carData.pricePerDay;
+        priceDisplay.innerText = totalPrice;
+    } else {
+        priceDisplay.innerText = "0"; // في حال كانت التواريخ مدخلة بشكل خاطئ
+    }
+}
+
+// 7. تأكيد الحجز النهائي
+function confirmFinalBooking() {
+    const start = document.getElementById("startDate").value;
+    const end = document.getElementById("endDate").value;
+    const total = document.getElementById("drawerTotalPrice").innerText;
+
+    if (!start || !end || total === "0") {
+        alert("Please select valid rent dates first!");
+        return;
+    }
+    alert(`Success! Your booking for ${currentCarKey} has been sent. Total: ${total} BHD.`);
+    closeDrawer();
+}
 
 /*====================================================================
   4. التحقق من النماذج 
@@ -302,4 +364,27 @@ window.addEventListener("DOMContentLoaded", () => {
     // Initialize auto-rotation intervals
     setInterval(nextSlide, intervalTime);
   }
+});
+
+/*====================================================================
+  8. ضبط الحد الأدنى للتواريخ (منع حجز التواريخ السابقة)
+====================================================================*/
+window.addEventListener("DOMContentLoaded", () => {
+    // جلب حقول تاريخ الاستلام والعودة من الـ Drawer
+    const startDateInput = document.getElementById("startDate");
+    const endDateInput = document.getElementById("endDate");
+
+    if (startDateInput && endDateInput) {
+        // الحصول على تاريخ اليوم الحالي بتنسيق (YYYY-MM-DD)
+        const today = new Date().toISOString().split('T')[0];
+        
+        // تعيين تاريخ اليوم كحد أدنى للاختيار
+        startDateInput.min = today;
+        endDateInput.min = today;
+
+        // ذكاء إضافي: إذا اختار المستخدم تاريخ استلام، يصبح تاريخ العودة تلقائياً يبدأ منه
+        startDateInput.addEventListener("change", () => {
+            endDateInput.min = startDateInput.value;
+        });
+    }
 });

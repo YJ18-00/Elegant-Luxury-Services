@@ -38,7 +38,7 @@
     </header>
 
     <!-- ==========================================
-    04 | معرض السيارات 
+    04 | معرض السيارات (محدث بأزرار المعاينة)
     ========================================== -->
     <section class="gallery">
         
@@ -46,71 +46,154 @@
         <div class="gallery-item">
             <img src="images/suvs/Lamborghini Urus/f1.png" alt="Lamborghini Urus">
             <h3>Lamborghini Urus</h3>
-            <button onclick="bookCar('Lamborghini Urus')">Book Now</button>
+            <button onclick="openDrawer('Lamborghini Urus')">View</button>
         </div>
 
         <!-- السيارة 2: Range Rover Vogue -->
         <div class="gallery-item">
             <img src="images/suvs/Range Rover Vogue/f1.png" alt="Range Rover Vogue">
             <h3>Range Rover Vogue</h3>
-            <button onclick="bookCar('Range Rover Vogue')">Book Now</button>
+            <button onclick="openDrawer('Range Rover Vogue')">View</button>
         </div>
 
         <!-- السيارة 3: Audi Q8 -->
         <div class="gallery-item">
             <img src="images/suvs/Audi Q8/f1.png" alt="Audi Q8">
             <h3>Audi Q8</h3>
-            <button onclick="bookCar('Audi Q8')">Book Now</button>
+            <button onclick="openDrawer('Audi Q8')">View</button>
         </div>
 
         <!-- السيارة 4: Bentley Bentayga V8 -->
         <div class="gallery-item">
             <img src="images/suvs/Bentley Bentayga V8/F1.png" alt="Bentley Bentayga V8">
             <h3>Bentley Bentayga V8</h3>
-            <button onclick="bookCar('Bentley Bentayga V8')">Book Now</button>
+            <button onclick="openDrawer('Bentley Bentayga V8')">View</button>
         </div>
 
         <!-- السيارة 5: Range Rover Sport -->
         <div class="gallery-item">
             <img src="images/suvs/Range Rover Sport/f1.png" alt="Range Rover Sport">
             <h3>Range Rover Sport</h3>
-            <button onclick="bookCar('Range Rover Sport')">Book Now</button>
+            <button onclick="openDrawer('Range Rover Sport')">View</button>
         </div>
 
         <!-- السيارة 6: Lexus LX 600 VIP -->
         <div class="gallery-item">
-            <img src="images/suvs/Lexus LX 600/f1.png" alt="Lexus LX 600 VIP">
+            <img src="images/suvs/Lexus LX 600 VIP/f1.png" alt="Lexus LX 600 VIP">
             <h3>Lexus LX 600 VIP</h3>
-            <button onclick="bookCar('Lexus LX 600 VIP')">Book Now</button>
+            <button onclick="openDrawer('Lexus LX 600 VIP')">View</button>
         </div>
 
     </section>
 
     <!-- ==========================================
-    05 | نافذة الحجز
+    05 | لوحة التفاصيل والحجز الجانبية الفاخرة (المحدثة بالكامل)
     ========================================== -->
-    <div id="bookingModal" class="modal">
-        <div class="modal-box">
-            <h2>Book Your SUV</h2>
-            <p id="selectedCar"></p>
-            <label>Rental Duration</label>
-            <select id="period" onchange="calculatePrice()">
-                <option value="hour">1 Hour</option>
-                <option value="day">1 Day</option>
-                <option value="week">1 Week</option>
-                <option value="month">1 Month</option>
-            </select>
-            <label>Pickup Location</label>
-            <select id="location" onchange="calculatePrice()">
-                <option value="office">Main Office</option>
-                <option value="airport">Bahrain Airport</option>
-                <option value="hotel">Hotel Delivery</option>
-            </select>
-            <h3>Total Price: <span id="price">0 BHD</span></h3>
-            <button onclick="sendBooking()" class="btn">Confirm Booking</button>
-            <button onclick="closeModal()" class="btn close">Close</button>
+    <div id="bookingDrawer" class="drawer-overlay">
+    <div class="drawer-panel">
+        
+        <!-- زر الإغلاق العلوي -->
+        <button class="drawer-close-btn" onclick="closeDrawer()">&times;</button>
+
+        <!-- الشق الأيسر: الصورة مكبرة وفي المنتصف تماماً بين السهمين وبدون padding زائد -->
+        <div class="drawer-left">
+            <!-- سهم التنقل الأيسر -->
+            <button class="slide-arrow left-arrow" onclick="changeSlide(-1)">
+                <img src="images/icon/left arrow buttons.png" alt="&lt;">
+            </button>
+            
+            <!-- حاوية الصورة المكبرة والموسطة بنسبة 100% -->
+            <div class="image-container-wrapper">
+                <img id="drawerCarImage" src="" alt="Car Image">
+            </div>
+            
+            <!-- سهم التنقل الأيمن -->
+            <button class="slide-arrow right-arrow" onclick="changeSlide(1)">
+                <img src="images/icon/right arrow buttons.png" alt="&gt;">
+            </button>
         </div>
+
+        <!-- الشق الأيمن: المواصفات بالأيقونات الصور واسم السيارة في المنتصف -->
+        <div class="drawer-right">
+            <!-- اسم السيارة في المنتصف تماماً -->
+            <h2 id="drawerCarName">Car Name</h2>
+            <hr class="drawer-line">
+            
+            <h3 class="section-title">Details</h3>
+
+            <!-- قائمة المواصفات باستخدام مسارات صور الأيقونات بدلاً من الإيموجي -->
+            <div class="details-list">
+                <!-- السرعة القصوى -->
+                <div class="details-row">
+                    <span class="detail-label">
+                        <img src="images/icon/Top Speed.png" class="spec-icon" alt="Top Speed Icon">
+                        Top Speed
+                    </span>
+                    <span class="detail-value" id="specTopSpeed">-- km/h</span>
+                </div>
+                <!-- التسارع -->
+                <div class="details-row">
+                    <span class="detail-label">
+                        <img src="images/icon/0-100 kmh.png" class="spec-icon" alt="0-100 Icon">
+                        0-100 km/h
+                    </span>
+                    <span class="detail-value" id="specAcceleration">-- s</span>
+                </div>
+                <!-- المحرك -->
+                <div class="details-row">
+                    <span class="detail-label">
+                        <img src="images/icon/Engine.png" class="spec-icon" alt="Engine Icon">
+                        Engine
+                    </span>
+                    <span class="detail-value" id="specEngine">--</span>
+                </div>
+                <!-- الأحصنة -->
+                <div class="details-row">
+                    <span class="detail-label">
+                        <img src="images/icon/Horse power.png" class="spec-icon" alt="Power Icon">
+                        Power
+                    </span>
+                    <span class="detail-value" id="specHp">-- HP</span>
+                </div>
+                <!-- المقاعد -->
+                <div class="details-row">
+                    <span class="detail-label">
+                        <img src="images/icon/car Seats.png" class="spec-icon" alt="Seats Icon">
+                        Seats
+                    </span>
+                    <span class="detail-value" id="specSeats">--</span>
+                </div>
+            </div>
+
+            <!-- خيارات الحجز والتواريخ والتفاعل الفاخر -->
+            <div class="booking-controls">
+                <div class="input-group">
+                    <label>Start Date</label>
+                    <input type="date" id="startDate" onchange="calculateLivePrice()">
+                </div>
+                <div class="input-group">
+                    <label>End Date</label>
+                    <input type="date" id="endDate" onchange="calculateLivePrice()">
+                </div>
+                <div class="input-group">
+                    <label>Pickup Location</label>
+                    <select id="drawerLocation">
+                        <option value="office">Main Office</option>
+                        <option value="airport">Bahrain Airport</option>
+                        <option value="hotel">Hotel Delivery</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- السعر النهائي وزر الحجز التفاعلي -->
+            <div class="price-action-zone">
+                <div class="price-display">Total Price: <span id="drawerTotalPrice">0</span> BHD</div>
+                <button class="book-now-final-btn" onclick="confirmFinalBooking()">Book Now</button>
+            </div>
+        </div>
+
     </div>
+</div>
 
     <!-- ==========================================
     06 | التذييل
