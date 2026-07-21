@@ -67,7 +67,7 @@ const carDatabase = {
     "Range Rover Vogue": {
         folderName: "Range Rover Vogue", 
         model: "2025", hp: "523", engine: "V8 P530", topSpeed: "250", acceleration: "4.6", seats: "5", pricePerDay: 120,
-        images: ["f1.png", "f2.png", "in1.png",]
+        images: ["f1.png", "f2.png", "in1.png"]
     },
     "Audi Q8": {
         folderName: "Audi Q8", 
@@ -111,6 +111,11 @@ function openDrawer(carName) {
     
     document.getElementById("startDate").value = "";
     document.getElementById("endDate").value = "";
+    
+    // تفريغ مربع الوقت الجديد إذا كان موجوداً
+    const timeInput = document.getElementById("pickupTime");
+    if (timeInput) timeInput.value = "";
+
     document.getElementById("drawerTotalPrice").innerText = "0";
 
     updateSliderImage();
@@ -177,17 +182,34 @@ function calculateLivePrice() {
     }
 }
 
-// دالة تأكيد الحجز النهائي وإرسال الطلب
+// دالة تأكيد الحجز النهائي وإرسال الطلب + حفظه في LocalStorage
 function confirmFinalBooking() {
     const start = document.getElementById("startDate").value;
     const end = document.getElementById("endDate").value;
+    const timeInput = document.getElementById("pickupTime");
+    const time = timeInput ? timeInput.value : "N/A";
     const total = document.getElementById("drawerTotalPrice").innerText;
 
     if (!start || !end || total === "0") {
         alert("Please select valid rent dates first!");
         return;
     }
-    alert(`Success! Your booking for ${currentCarKey} has been sent. Total: ${total} BHD.`);
+
+    // 📥 حفظ بيانات الحجز والوقت في التخزين المحلي LocalStorage
+    const newBooking = {
+        carName: currentCarKey,
+        startDate: start,
+        endDate: end,
+        pickupTime: time,
+        totalPrice: total,
+        bookingDate: new Date().toLocaleDateString()
+    };
+
+    let userBookings = JSON.parse(localStorage.getItem("myBookings")) || [];
+    userBookings.push(newBooking);
+    localStorage.setItem("myBookings", JSON.stringify(userBookings));
+
+    alert(`Success! Your booking for ${currentCarKey} at ${time} has been sent. Total: ${total} BHD.`);
     closeDrawer();
 }
 

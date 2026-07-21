@@ -123,7 +123,7 @@ body.light .card img {
   top: 0;
   background: var(--card-color);
   overflow-x: hidden;
-  transition: .4s;
+  transition: .2s ease-in-out;
   padding-top: 60px;
   z-index: 1000;
 }
@@ -145,40 +145,37 @@ body.light .card img {
 .closebtn {
   position: absolute;
   right: 20px;
-  top: 10px;
-  font-size: 35px;
+  top: 15px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
   cursor: pointer;
-  
-  /* لضمان التنسيق إذا رغبت بجعله دائرياً كالتصميم الحديث */
-  width: 45px;
-  height: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--primary-color);
-  background: none;
-  border: none;
+}
+.closebtn:hover {
+  transform: scale(1.1);
 }
 
-/* تعديل زر القائمة الجانبية ليكون دائرياً ومثالي التوسط */
+
 .menu-btn {
   position: fixed;
   left: 20px;
   top: 20px;
   background: var(--primary-color);
-  color: black;
+  color: var(--bg-color);
   border: none;
-  
-  /* جعل الطول والعرض متساويين مع border-radius 50% للدائرية */
   width: 55px;
   height: 55px;
   border-radius: 50%;
-  
-  /* ضبط السنتر للأيقونة بداخل الزر */
   display: flex;
   justify-content: center;
   align-items: center;
-  
   font-size: 22px;
   cursor: pointer;
   z-index: 1001;
@@ -451,10 +448,17 @@ button {
   position: absolute;
   top: 25px;
   right: 25px;
-  background: none;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: var(--bg-primary)#111;
   border: none;
   font-size: 2.8rem;
-  color: var(--primary-color);
+  color: var(--bg-primary);
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   z-index: 2010;
   line-height: 1;
@@ -577,7 +581,8 @@ button {
 .booking-controls .input-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
 .booking-controls label { font-size: 0.95rem; font-weight: 600; }
 
-.booking-controls input[type="date"], 
+.booking-controls input[type="date"],
+.booking-controls input[type="time"], 
 .booking-controls select {
   width: 100%;
   padding: 14px;
@@ -592,6 +597,7 @@ button {
 }
 
 body.light .booking-controls input[type="date"],
+body.light .booking-controls input[type="time"],
 body.light .booking-controls select {
   background: #e0e0e0 !important;   
   border: 1px solid #000000 !important; 
