@@ -245,65 +245,52 @@ if (form) {
 /*====================================================================
   5. نظام تسجيل الدخول والتحقق (LOGIN SYSTEM)
 ====================================================================*/
+/*====================================================================
+  AUTH MODAL CONTROLLER
+====================================================================*/
+function openAuthModal() {
+  const modal = document.getElementById("authModal");
+  if (modal) modal.classList.add("active");
+}
 
-// التحقق من اسم المستخدم وكلمة المرور عند تسجيل الدخول
-function handleLogin(event) {
-  event.preventDefault();
+function closeAuthModal() {
+  const modal = document.getElementById("authModal");
+  if (modal) modal.classList.remove("active");
+}
 
-  const userEl = document.getElementById("username");
-  const passEl = document.getElementById("password");
-  const msgEl = document.getElementById("msg");
+function switchAuthTab(tab) {
+  const loginForm = document.getElementById("loginForm");
+  const registerForm = document.getElementById("registerForm");
+  const tabLogin = document.getElementById("tabLogin");
+  const tabRegister = document.getElementById("tabRegister");
 
-  if (!userEl || !passEl) return false;
-
-  const username = userEl.value.trim();
-  const password = passEl.value.trim();
-
-  if (username === "" || password === "") {
-    if (msgEl) {
-      msgEl.style.color = "red";
-      msgEl.innerText = "Please Enter Username And Password";
-    } else {
-      alert("Please Enter Username And Password");
-    }
-    return false;
+  if (tab === 'login') {
+    loginForm.classList.add("active");
+    registerForm.classList.remove("active");
+    tabLogin.classList.add("active");
+    tabRegister.classList.remove("active");
+  } else {
+    registerForm.classList.add("active");
+    loginForm.classList.remove("active");
+    tabRegister.classList.add("active");
+    tabLogin.classList.remove("active");
   }
+}
 
-  alert("Login Successful");
-  window.location.href = "index.html";
+// مؤقتاً للتجربة بانتظار ربطه لاحقاً
+function handleLoginSubmit(e) {
+  e.preventDefault();
+  alert("Login triggered (View Ready!)");
+  closeAuthModal();
   return false;
 }
 
-// نظام تأثير الجزيئات المتساقطة في خلفية صفحة تسجيل الدخول
-function initLoginParticles() {
-    const container = document.getElementById('particlesContainer');
-    if (!container) return;
-
-    function createParticle() {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-
-        const size = Math.random() * 4 + 2;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.left = `${Math.random() * 100}vw`;
-
-        const duration = Math.random() * 5 + 5;
-        particle.style.animationDuration = `${duration}s`;
-        particle.style.opacity = Math.random() * 0.5 + 0.2;
-
-        container.appendChild(particle);
-
-        setTimeout(() => {
-            particle.remove();
-        }, duration * 1000);
-    }
-
-    setInterval(createParticle, 300);
+function handleRegisterSubmit(e) {
+  e.preventDefault();
+  alert("Register triggered (View Ready!)");
+  closeAuthModal();
+  return false;
 }
-
-document.addEventListener('DOMContentLoaded', initLoginParticles);
-
 /*====================================================================
   6. مظهر الموقع والوضع الليلي (THEME & LIGHT/DARK MODE)
 ====================================================================*/
