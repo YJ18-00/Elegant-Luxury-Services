@@ -6,7 +6,7 @@
     ========================================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exceptional Cars | Elegant Cars Rental</title>
+    <title>Exceptional Cars | Elegant Luxury Services</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,17 +31,10 @@
     03 | رأس الصفحة
     ========================================== -->
     <header class="page-header">
-        <!-- شعار الشركة الرئيسي -->
-        <img src="images/logo.png" alt="Elegant Cars Rental" class="page-logo">
-        
-        <!-- عنوان القسم الفخم -->
+        <img src="images/logo.png" alt="Elegant Luxury Services" class="page-logo">
         <h1 class="page-title">Exceptional Cars</h1>
-        
-        <!-- الخط التجميلي الفاصل -->
         <hr class="title-line">
-        
-        <!-- زر العودة الفاخر للصفحة الرئيسية -->
-        <a href="index.html#collections" class="back-btn">← Back To Home</a>
+        <a href="index.html#collections" class="back-btn">Back To Home</a>
     </header>
 
     <!-- ==========================================
@@ -49,94 +42,163 @@
     ========================================== -->
     <section class="gallery">
         
-        <!-- السيارة 1: Lamborghini revuelto -->
+        <!-- السيارة 1: Lamborghini Revuelto -->
         <div class="gallery-item">
             <img src="images/exceptional/Lamborghini Revuelto/F1.png" alt="Lamborghini Revuelto">
             <h3>Lamborghini Revuelto</h3>
-            <button onclick="bookCar('Lamborghini Revuelto')">Book Now</button>
+            <button onclick="openDrawer('Lamborghini Revuelto')">View</button>
         </div>
 
-        <!-- السيارة 2: Maserati Mc20 -->
+        <!-- السيارة 2: Maserati MC20 -->
         <div class="gallery-item">
-            <img src="images/exceptional/Maserati Mc20/F1.png" alt="Maserati Mc20">
-            <h3>Maserati Mc20</h3>
-            <button onclick="bookCar('Maserati Mc20')">Book Now</button>
+            <img src="images/exceptional/Maserati MC20/F1.png" alt="Maserati MC20">
+            <h3>Maserati MC20</h3>
+            <button onclick="openDrawer('Maserati MC20')">View</button>
         </div>
 
         <!-- السيارة 3: McLaren 750S -->
         <div class="gallery-item">
             <img src="images/exceptional/McLaren 750S/F1.png" alt="McLaren 750S">
             <h3>McLaren 750S</h3>
-            <button onclick="bookCar('McLaren 750S')">Book Now</button>
+            <button onclick="openDrawer('McLaren 750S')">View</button>
         </div>
 
         <!-- السيارة 4: Bugatti Chiron -->
         <div class="gallery-item">
             <img src="images/exceptional/Bugatti Chiron/F1.png" alt="Bugatti Chiron">
             <h3>Bugatti Chiron</h3>
-            <button onclick="bookCar('Bugatti Chiron')">Book Now</button>
+            <button onclick="openDrawer('Bugatti Chiron')">View</button>
         </div>
 
         <!-- السيارة 5: Porsche 911 GT3 RS -->
         <div class="gallery-item">
             <img src="images/exceptional/Porsche 911 GT3 RS/F1.png" alt="Porsche 911 GT3 RS">
             <h3>Porsche 911 GT3 RS</h3>
-            <button onclick="bookCar('Porsche 911 GT3 RS')">Book Now</button>
+            <button onclick="openDrawer('Porsche 911 GT3 RS')">View</button>
         </div>
 
         <!-- السيارة 6: Aston Martin Vanquish -->
         <div class="gallery-item">
             <img src="images/exceptional/Aston Martin Vanquish/F1.png" alt="Aston Martin Vanquish">
             <h3>Aston Martin Vanquish</h3>
-            <button onclick="bookCar('Aston Martin Vanquish')">Book Now</button>
+            <button onclick="openDrawer('Aston Martin Vanquish')">View</button>
         </div>
 
     </section>
 
     <!-- ==========================================
-    05 | نافذة الحجز
+    05 | لوحة التفاصيل والحجز الجانبية (BOOKING DRAWER)
     ========================================== -->
-    <div id="bookingModal" class="modal">
-        <div class="modal-box">
-            <h2>Book Your Ride</h2>
-            <p id="selectedCar"></p>
-            <label>Rental Duration</label>
-            <select id="period" onchange="calculatePrice()">
-                <option value="hour">1 Hour</option>
-                <option value="day">1 Day</option>
-                <option value="week">1 Week</option>
-                <option value="month">1 Month</option>
-            </select>
-            <label>Pickup Location</label>
-            <select id="location" onchange="calculatePrice()">
-                <option value="office">Main Office</option>
-                <option value="airport">Bahrain Airport</option>
-                <option value="hotel">Hotel Delivery</option>
-            </select>
-            <h3>Total Price: <span id="price">0 BHD</span></h3>
-            <button onclick="sendBooking()" class="btn">Confirm Booking</button>
-            <button onclick="closeModal()" class="btn close">Close</button>
+    <div id="bookingDrawer" class="drawer-overlay">
+        <div class="drawer-panel">
+            
+            <button class="drawer-close-btn" onclick="closeDrawer()">&times;</button>
+
+            <!-- الشق الأيسر: الصور والأسهم -->
+            <div class="drawer-left">
+                <button class="slide-arrow left-arrow" onclick="changeSlide(-1)">
+                    <img src="images/icon/left arrow buttons.png" alt="&lt;">
+                </button>
+                
+                <div class="image-container-wrapper">
+                    <img id="drawerCarImage" src="" alt="Car Image">
+                </div>
+                
+                <button class="slide-arrow right-arrow" onclick="changeSlide(1)">
+                    <img src="images/icon/right arrow buttons.png" alt="&gt;">
+                </button>
+            </div>
+
+            <!-- الشق الأيمن: المواصفات واستمارة الحجز -->
+            <div class="drawer-right">
+                <h2 id="drawerCarName">Car Name</h2>
+                <hr class="drawer-line">
+                
+                <h3 class="section-title">Details</h3>
+
+                <div class="details-list">
+                    <div class="details-row">
+                        <span class="detail-label">
+                            <img src="images/icon/Top Speed.png" class="spec-icon" alt="Top Speed">
+                            Top Speed
+                        </span>
+                        <span class="detail-value" id="specTopSpeed">-- km/h</span>
+                    </div>
+                    <div class="details-row">
+                        <span class="detail-label">
+                            <img src="images/icon/0-100 kmh.png" class="spec-icon" alt="0-100">
+                            0-100 km/h
+                        </span>
+                        <span class="detail-value" id="specAcceleration">-- s</span>
+                    </div>
+                    <div class="details-row">
+                        <span class="detail-label">
+                            <img src="images/icon/Engine.png" class="spec-icon" alt="Engine">
+                            Engine
+                        </span>
+                        <span class="detail-value" id="specEngine">--</span>
+                    </div>
+                    <div class="details-row">
+                        <span class="detail-label">
+                            <img src="images/icon/Horse power.png" class="spec-icon" alt="Power">
+                            Power
+                        </span>
+                        <span class="detail-value" id="specHp">-- HP</span>
+                    </div>
+                    <div class="details-row">
+                        <span class="detail-label">
+                            <img src="images/icon/car Seats.png" class="spec-icon" alt="Seats">
+                            Seats
+                        </span>
+                        <span class="detail-value" id="specSeats">--</span>
+                    </div>
+                </div>
+
+                <div class="booking-controls">
+                    <div class="input-group">
+                        <label>Start Date</label>
+                        <input type="date" id="startDate" onchange="calculateLivePrice()">
+                    </div>
+                    <div class="input-group">
+                        <label>End Date</label>
+                        <input type="date" id="endDate" onchange="calculateLivePrice()">
+                    </div>
+                    <div class="input-group">
+                        <label for="pickupTime">Pickup Time</label>
+                        <input type="time" id="pickupTime" name="pickupTime" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Pickup Location</label>
+                        <select id="drawerLocation">
+                            <option value="office">Main Office</option>
+                            <option value="airport">Bahrain Airport</option>
+                            <option value="hotel">Hotel Delivery</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="price-action-zone">
+                    <div class="price-display">Total Price: <span id="drawerTotalPrice">0</span> BHD</div>
+                    <button class="book-now-final-btn" onclick="confirmFinalBooking()">Book Now</button>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <!-- ==========================================
     06 | التذييل
     ========================================== -->
-<footer class="footer">
+    <footer class="footer">
         <div class="footer-container">
-            <!-- الشعار -->
             <div class="footer-box">
                 <img src="images/logo.png" alt="ECR Logo" class="footer-logo">
             </div>
-
-            <!-- الروابط السريعة -->
             <div class="footer-box">
                 <h3>Quick Links</h3>
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
             </div>
-
-            <!-- معلومات التوصل -->
             <div class="footer-box">
                 <h3>Contact</h3>
                 <p>📍 Manama, Bahrain</p>
@@ -148,29 +210,76 @@
         <hr>
 
         <p class="copyright">
-            © 2026 Elegant Cars Rental (ECR) <br>
+            © 2026 Elegant Luxury Services <br>
             Luxury Mobility & Concierge Platform
         </p>
     </footer>
-    
+
     <!-- ========================================== 
-    أزرار التحكم العلوية 07
+    07 | أزرار التحكم العلوية
     ========================================== -->
-   
-    <!-- زر تبديل الوضع الليلي/النهاري -->
-     <a href="javascript:void(0)" id="theme-toggle" class="theme-btn">
+    <a href="javascript:void(0)" id="theme-toggle" class="theme-btn">
         <img src="images/icon/theme-icon.png" alt="Toggle Theme" id="theme-icon">
     </a>
 
-    <!-- زر الملف الشخصي وتسجيل الدخول -->
-    <a href="login.html" class="profile-btn">
+    <a href="#" class="profile-btn" onclick="openAuthModal(); return false;">
         <img src="images/icon/login icon.png" alt="login">
     </a>
-    
+
+    <!-- ==========================================
+    08 | تسجيل الدخول / إنشاء حساب
+    ========================================== -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <span class="auth-close-btn" onclick="closeAuthModal()">&times;</span>
+            
+            <div class="auth-tabs">
+                <button id="tabLogin" class="auth-tab-btn active" onclick="switchAuthTab('login')">Login</button>
+                <button id="tabRegister" class="auth-tab-btn" onclick="switchAuthTab('register')">Sign Up</button>
+            </div>
+
+            <form id="loginForm" class="auth-form active" onsubmit="return handleLoginSubmit(event)">
+                <h3>Welcome Back</h3>
+                <p class="auth-subtitle">Enter your details to access your account</p>
+                
+                <div class="auth-input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="name@example.com" required>
+                </div>
+                
+                <div class="auth-input-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="auth-submit-btn">Login</button>
+            </form>
+
+            <form id="registerForm" class="auth-form" onsubmit="return handleRegisterSubmit(event)">
+                <h3>Create Account</h3>
+                <p class="auth-subtitle">Join us to book your luxury service</p>
+                
+                <div class="auth-input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="regName" placeholder="Y.ALABREEQ" required>
+                </div>
+
+                <div class="auth-input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="regEmail" placeholder="name@example.com" required>
+                </div>
+                
+                <div class="auth-input-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="auth-submit-btn">Create Account</button>
+            </form>
+        </div>
     </div>
 
-    <!-- ربط ملف الـ  -->
+    <!-- ربط ملف الـ JavaScript -->
     <script src="script.js"></script>
 </body>
-
 </html>

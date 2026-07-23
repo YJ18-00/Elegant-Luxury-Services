@@ -6,13 +6,13 @@
     ========================================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUV Collection | Elegant Cars Rental</title>
+    <title>SUV Collection | Elegant Luxury Services</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- ==========================================
-    02 | القائمة الجانبية
+    02 | أزرار التحكم العلوية والقائمة الجانبية
     ========================================== -->
     <button class="menu-btn" onclick="openNav()">☰</button>
 
@@ -31,14 +31,14 @@
     03 | رأس الصفحة
     ========================================== -->
     <header class="page-header">
-        <img src="images/logo.png" alt="Elegant Cars Rental" class="page-logo">
+        <img src="images/logo.png" alt="Elegant Luxury Services" class="page-logo">
         <h1 class="page-title">SUV Collection</h1>
         <hr class="title-line">
-        <a href="index.html#collections" class="back-btn">← Back To Home</a>
+        <a href="index.html#collections" class="back-btn">Back To Home</a>
     </header>
 
     <!-- ==========================================
-    04 | معرض السيارات (محدث بأزرار المعاينة)
+    04 | معرض السيارات
     ========================================== -->
     <section class="gallery">
         
@@ -87,136 +87,120 @@
     </section>
 
     <!-- ==========================================
-    05 | لوحة التفاصيل والحجز الجانبية الفاخرة (المحدثة بالكامل)
+    05 | لوحة التفاصيل والحجز الجانبية (BOOKING DRAWER)
     ========================================== -->
     <div id="bookingDrawer" class="drawer-overlay">
-    <div class="drawer-panel">
-        
-        <!-- زر الإغلاق العلوي -->
-        <button class="drawer-close-btn" onclick="closeDrawer()">&times;</button>
+        <div class="drawer-panel">
+            
+            <button class="drawer-close-btn" onclick="closeDrawer()">&times;</button>
 
-        <!-- الشق الأيسر: الصورة مكبرة وفي المنتصف تماماً بين السهمين وبدون padding زائد -->
-        <div class="drawer-left">
-            <!-- سهم التنقل الأيسر -->
-            <button class="slide-arrow left-arrow" onclick="changeSlide(-1)">
-                <img src="images/icon/left arrow buttons.png" alt="&lt;">
-            </button>
-            
-            <!-- حاوية الصورة المكبرة والموسطة بنسبة 100% -->
-            <div class="image-container-wrapper">
-                <img id="drawerCarImage" src="" alt="Car Image">
+            <!-- الشق الأيسر: الصور والأسهم -->
+            <div class="drawer-left">
+                <button class="slide-arrow left-arrow" onclick="changeSlide(-1)">
+                    <img src="images/icon/left arrow buttons.png" alt="&lt;">
+                </button>
+                
+                <div class="image-container-wrapper">
+                    <img id="drawerCarImage" src="" alt="Car Image">
+                </div>
+                
+                <button class="slide-arrow right-arrow" onclick="changeSlide(1)">
+                    <img src="images/icon/right arrow buttons.png" alt="&gt;">
+                </button>
             </div>
-            
-            <!-- سهم التنقل الأيمن -->
-            <button class="slide-arrow right-arrow" onclick="changeSlide(1)">
-                <img src="images/icon/right arrow buttons.png" alt="&gt;">
-            </button>
+
+            <!-- الشق الأيمن: المواصفات واستمارة الحجز -->
+            <div class="drawer-right">
+                <h2 id="drawerCarName">Car Name</h2>
+                <hr class="drawer-line">
+                
+                <h3 class="section-title">Details</h3>
+
+                <div class="details-list">
+                    <div class="details-row">
+                        <span class="detail-label">
+                            <img src="images/icon/Top Speed.png" class="spec-icon" alt="Top Speed">
+                            Top Speed
+                        </span>
+                        <span class="detail-value" id="specTopSpeed">-- km/h</span>
+                    </div>
+                    <div class="details-row">
+                        <span class="detail-label">
+                            <img src="images/icon/0-100 kmh.png" class="spec-icon" alt="0-100">
+                            0-100 km/h
+                        </span>
+                        <span class="detail-value" id="specAcceleration">-- s</span>
+                    </div>
+                    <div class="details-row">
+                        <span class="detail-label">
+                            <img src="images/icon/Engine.png" class="spec-icon" alt="Engine">
+                            Engine
+                        </span>
+                        <span class="detail-value" id="specEngine">--</span>
+                    </div>
+                    <div class="details-row">
+                        <span class="detail-label">
+                            <img src="images/icon/Horse power.png" class="spec-icon" alt="Power">
+                            Power
+                        </span>
+                        <span class="detail-value" id="specHp">-- HP</span>
+                    </div>
+                    <div class="details-row">
+                        <span class="detail-label">
+                            <img src="images/icon/car Seats.png" class="spec-icon" alt="Seats">
+                            Seats
+                        </span>
+                        <span class="detail-value" id="specSeats">--</span>
+                    </div>
+                </div>
+
+                <div class="booking-controls">
+                    <div class="input-group">
+                        <label>Start Date</label>
+                        <input type="date" id="startDate" onchange="calculateLivePrice()">
+                    </div>
+                    <div class="input-group">
+                        <label>End Date</label>
+                        <input type="date" id="endDate" onchange="calculateLivePrice()">
+                    </div>
+                    <div class="input-group">
+                        <label for="pickupTime">Pickup Time</label>
+                        <input type="time" id="pickupTime" name="pickupTime" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Pickup Location</label>
+                        <select id="drawerLocation">
+                            <option value="office">Main Office</option>
+                            <option value="airport">Bahrain Airport</option>
+                            <option value="hotel">Hotel Delivery</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="price-action-zone">
+                    <div class="price-display">Total Price: <span id="drawerTotalPrice">0</span> BHD</div>
+                    <button class="book-now-final-btn" onclick="confirmFinalBooking()">Book Now</button>
+                </div>
+            </div>
+
         </div>
-
-        <!-- الشق الأيمن: المواصفات بالأيقونات الصور واسم السيارة في المنتصف -->
-        <div class="drawer-right">
-            <!-- اسم السيارة في المنتصف تماماً -->
-            <h2 id="drawerCarName">Car Name</h2>
-            <hr class="drawer-line">
-            
-            <h3 class="section-title">Details</h3>
-
-            <!-- قائمة المواصفات باستخدام مسارات صور الأيقونات بدلاً من الإيموجي -->
-            <div class="details-list">
-                <!-- السرعة القصوى -->
-                <div class="details-row">
-                    <span class="detail-label">
-                        <img src="images/icon/Top Speed.png" class="spec-icon" alt="Top Speed Icon">
-                        Top Speed
-                    </span>
-                    <span class="detail-value" id="specTopSpeed">-- km/h</span>
-                </div>
-                <!-- التسارع -->
-                <div class="details-row">
-                    <span class="detail-label">
-                        <img src="images/icon/0-100 kmh.png" class="spec-icon" alt="0-100 Icon">
-                        0-100 km/h
-                    </span>
-                    <span class="detail-value" id="specAcceleration">-- s</span>
-                </div>
-                <!-- المحرك -->
-                <div class="details-row">
-                    <span class="detail-label">
-                        <img src="images/icon/Engine.png" class="spec-icon" alt="Engine Icon">
-                        Engine
-                    </span>
-                    <span class="detail-value" id="specEngine">--</span>
-                </div>
-                <!-- الأحصنة -->
-                <div class="details-row">
-                    <span class="detail-label">
-                        <img src="images/icon/Horse power.png" class="spec-icon" alt="Power Icon">
-                        Power
-                    </span>
-                    <span class="detail-value" id="specHp">-- HP</span>
-                </div>
-                <!-- المقاعد -->
-                <div class="details-row">
-                    <span class="detail-label">
-                        <img src="images/icon/car Seats.png" class="spec-icon" alt="Seats Icon">
-                        Seats
-                    </span>
-                    <span class="detail-value" id="specSeats">--</span>
-                </div>
-            </div>
-
-            <!-- خيارات الحجز والتواريخ والتفاعل الفاخر -->
-            <div class="booking-controls">
-                <div class="input-group">
-                    <label>Start Date</label>
-                    <input type="date" id="startDate" onchange="calculateLivePrice()">
-                </div>
-                <div class="input-group">
-                    <label>End Date</label>
-                    <input type="date" id="endDate" onchange="calculateLivePrice()">
-                </div>
-                <div class="input-group">
-                    <label for="pickup-time">Pickup Time</label>
-                    <input type="time" id="pickupTime" name="pickupTime" required>
-                </div>
-                <div class="input-group">
-                    <label>Pickup Location</label>
-                    <select id="drawerLocation">
-                        <option value="office">Main Office</option>
-                        <option value="airport">Bahrain Airport</option>
-                        <option value="hotel">Hotel Delivery</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- السعر النهائي وزر الحجز التفاعلي -->
-            <div class="price-action-zone">
-                <div class="price-display">Total Price: <span id="drawerTotalPrice">0</span> BHD</div>
-                <button class="book-now-final-btn" onclick="confirmFinalBooking()">Book Now</button>
-            </div>
-        </div>
-
     </div>
-</div>
 
     <!-- ==========================================
     06 | التذييل
     ========================================== -->
     <footer class="footer">
         <div class="footer-container">
-            <!-- الشعار -->
             <div class="footer-box">
                 <img src="images/logo.png" alt="ECR Logo" class="footer-logo">
             </div>
 
-            <!-- الروابط السريعة -->
             <div class="footer-box">
                 <h3>Quick Links</h3>
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
             </div>
 
-            <!-- معلومات التوصل -->
             <div class="footer-box">
                 <h3>Contact</h3>
                 <p>📍 Manama, Bahrain</p>
@@ -228,29 +212,76 @@
         <hr>
 
         <p class="copyright">
-            © 2026 Elegant Cars Rental (ECR) <br>
+            © 2026 Elegant Luxury Services <br>
             Luxury Mobility & Concierge Platform
         </p>
     </footer>
-    
+
     <!-- ========================================== 
-    أزرار التحكم العلوية 07
+    07 | أزرار التحكم العلوية
     ========================================== -->
-   
-    <!-- زر تبديل الوضع الليلي/النهاري -->
-     <a href="javascript:void(0)" id="theme-toggle" class="theme-btn">
+    <a href="javascript:void(0)" id="theme-toggle" class="theme-btn">
         <img src="images/icon/theme-icon.png" alt="Toggle Theme" id="theme-icon">
     </a>
 
-    <!-- زر الملف الشخصي وتسجيل الدخول -->
-    <a href="login.html" class="profile-btn">
+    <a href="#" class="profile-btn" onclick="openAuthModal(); return false;">
         <img src="images/icon/login icon.png" alt="login">
     </a>
-    
+
+    <!-- ==========================================
+    08 | تسجيل الدخول / إنشاء حساب
+    ========================================== -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <span class="auth-close-btn" onclick="closeAuthModal()">&times;</span>
+            
+            <div class="auth-tabs">
+                <button id="tabLogin" class="auth-tab-btn active" onclick="switchAuthTab('login')">Login</button>
+                <button id="tabRegister" class="auth-tab-btn" onclick="switchAuthTab('register')">Sign Up</button>
+            </div>
+
+            <form id="loginForm" class="auth-form active" onsubmit="return handleLoginSubmit(event)">
+                <h3>Welcome Back</h3>
+                <p class="auth-subtitle">Enter your details to access your account</p>
+                
+                <div class="auth-input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="name@example.com" required>
+                </div>
+                
+                <div class="auth-input-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="auth-submit-btn">Login</button>
+            </form>
+
+            <form id="registerForm" class="auth-form" onsubmit="return handleRegisterSubmit(event)">
+                <h3>Create Account</h3>
+                <p class="auth-subtitle">Join us to book your luxury service</p>
+                
+                <div class="auth-input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="regName" placeholder="Y.ALABREEQ" required>
+                </div>
+
+                <div class="auth-input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="regEmail" placeholder="name@example.com" required>
+                </div>
+                
+                <div class="auth-input-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="auth-submit-btn">Create Account</button>
+            </form>
+        </div>
     </div>
 
-    <!-- ربط ملف الـ  -->
+    <!-- ربط ملف الـ JavaScript -->
     <script src="script.js"></script>
 </body>
-
 </html>
